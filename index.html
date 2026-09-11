@@ -1,30 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VOXA | Connect. Chat. Share.</title>
 
-    <title>VOXA | Connect. Chat. Share.</title>
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <link rel="stylesheet" href="style.css">
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+body{
+    font-family:Arial, sans-serif;
+    background:#f4f6fb;
+    height:100vh;
+    overflow:hidden;
+    color:#202124;
+}
+
+.app{
+    display:flex;
+    height:100vh;
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:270px;
+    background:#fff;
+    border-right:1px solid #e5e7eb;
+    padding:25px 18px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:25px;
+    font-weight:bold;
+    color:#6c63ff;
+    margin-bottom:35px;
+}
+
+.logo-icon{
+    width:45px;
+    height:45px;
+    background:#6c63ff;
+    color:white;
+    border-radius:14px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+nav{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.nav-item{
+    border:none;
+    background:none;
+    padding:14px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    color:#666;
+    cursor:pointer;
+    font-size:15px;
+    text-align:left;
+    transition:.3s;
+}
+
+.nav-item:hover{
+    background:#f0efff;
+    color:#6c63ff;
+}
+
+.nav-item.active{
+    background:#6c63ff;
+    color:white;
+}
+
+/* CHAT AREA */
+.chat-area{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    background:#fafbff;
+}
+
+.chat-header{
+    height:75px;
+    background:white;
+    border-bottom:1px solid #e5e7eb;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 25px;
+}
+
+.user-info{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.avatar{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#6c63ff,#8e85ff);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+}
+
+.user-name{
+    font-weight:bold;
+}
+
+.status{
+    color:#22c55e;
+    font-size:12px;
+    margin-top:4px;
+}
+
+.header-actions{
+    display:flex;
+    gap:8px;
+}
+
+.icon-btn{
+    width:40px;
+    height:40px;
+    border:none;
+    border-radius:50%;
+    background:#f3f4f6;
+    cursor:pointer;
+    color:#555;
+}
+
+.icon-btn:hover{
+    background:#6c63ff;
+    color:white;
+}
+
+/* MESSAGES */
+.messages{
+    flex:1;
+    padding:25px;
+    overflow-y:auto;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.message{
+    max-width:65%;
+    padding:13px 16px;
+    border-radius:17px;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.received{
+    align-self:flex-start;
+    background:#eef0f4;
+    border-bottom-left-radius:4px;
+}
+
+.sent{
+    align-self:flex-end;
+    background:#6c63ff;
+    color:white;
+    border-bottom-right-radius:4px;
+}
+
+.message-time{
+    display:block;
+    font-size:10px;
+    opacity:.65;
+    text-align:right;
+    margin-top:5px;
+}
+
+/* INPUT */
+.message-input{
+    min-height:75px;
+    padding:14px 22px;
+    background:white;
+    border-top:1px solid #e5e7eb;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.message-input input{
+    flex:1;
+    height:48px;
+    border:none;
+    outline:none;
+    background:#f3f4f6;
+    border-radius:25px;
+    padding:0 20px;
+    font-size:14px;
+}
+
+.send-btn{
+    width:48px;
+    height:48px;
+    border:none;
+    border-radius:50%;
+    background:#6c63ff;
+    color:white;
+    cursor:pointer;
+}
+
+.send-btn:hover{
+    background:#5148e5;
+    transform:scale(1.05);
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+    .sidebar{
+        width:70px;
+        padding:20px 8px;
+    }
+
+    .logo span{
+        display:none;
+    }
+
+    .logo{
+        justify-content:center;
+    }
+
+    .nav-item{
+        justify-content:center;
+    }
+
+    .nav-item span{
+        display:none;
+    }
+
+    .message{
+        max-width:80%;
+    }
+}
+
+@media(max-width:480px){
+
+    .sidebar{
+        width:60px;
+    }
+
+    .messages{
+        padding:15px;
+    }
+
+    .message{
+        max-width:88%;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <div class="app">
 
-    <!-- ================= SIDEBAR ================= -->
-
+    <!-- SIDEBAR -->
     <aside class="sidebar">
 
         <div class="logo">
             <div class="logo-icon">
                 <i class="fa-solid fa-comment"></i>
             </div>
-
             <span>VOXA</span>
         </div>
 
@@ -41,290 +303,59 @@
             </button>
 
             <button class="nav-item">
-                <i class="fa-solid fa-circle-notch"></i>
-                <span>Status</span>
+                <i class="fa-solid fa-phone"></i>
+                <span>Calls</span>
             </button>
 
-        </nav>
-
-        <div class="sidebar-bottom">
+            <button class="nav-item">
+                <i class="fa-solid fa-bell"></i>
+                <span>Notifications</span>
+            </button>
 
             <button class="nav-item">
                 <i class="fa-solid fa-gear"></i>
                 <span>Settings</span>
             </button>
 
-            <button class="nav-item" id="themeButton">
-                <i class="fa-solid fa-moon"></i>
-                <span>Dark Mode</span>
-            </button>
-
-            <div class="mini-profile">
-
-                <div class="avatar avatar-blue">
-                    Y
-                </div>
-
-                <div>
-                    <strong>You</strong>
-                    <small>Online</small>
-                </div>
-
-            </div>
-
-        </div>
+        </nav>
 
     </aside>
 
-
-    <!-- ================= CHAT LIST ================= -->
-
-    <section class="chat-list">
+    <!-- CHAT -->
+    <main class="chat-area">
 
         <header class="chat-header">
 
-            <div>
-                <h1>Chats</h1>
-                <p>Stay connected</p>
-            </div>
+            <div class="user-info">
 
-            <button class="header-button">
-                <i class="fa-solid fa-pen-to-square"></i>
-            </button>
-
-        </header>
-
-
-        <!-- SEARCH -->
-
-        <div class="search-box">
-
-            <i class="fa-solid fa-magnifying-glass"></i>
-
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="Search conversations..."
-            >
-
-        </div>
-
-
-        <!-- FILTERS -->
-
-        <div class="filters">
-
-            <button class="filter active-filter">
-                All
-            </button>
-
-            <button class="filter">
-                Unread
-            </button>
-
-            <button class="filter">
-                Groups
-            </button>
-
-        </div>
-
-
-        <!-- CHAT ITEMS -->
-
-        <div class="chats" id="chatContainer">
-
-            <div class="chat-item selected"
-                 data-name="Sarah">
-
-                <div class="avatar avatar-purple">
-                    S
-                </div>
-
-                <div class="chat-info">
-
-                    <div class="chat-top">
-                        <strong>Sarah</strong>
-                        <time>12:40</time>
-                    </div>
-
-                    <div class="chat-bottom">
-
-                        <span>
-                            Hey! How are you?
-                        </span>
-
-                        <b class="unread">
-                            2
-                        </b>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="chat-item"
-                 data-name="David">
-
-                <div class="avatar avatar-green">
-                    D
-                </div>
-
-                <div class="chat-info">
-
-                    <div class="chat-top">
-                        <strong>David</strong>
-                        <time>11:25</time>
-                    </div>
-
-                    <div class="chat-bottom">
-
-                        <span>
-                            See you tomorrow!
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="chat-item"
-                 data-name="Michael">
-
-                <div class="avatar avatar-orange">
-                    M
-                </div>
-
-                <div class="chat-info">
-
-                    <div class="chat-top">
-                        <strong>Michael</strong>
-                        <time>10:14</time>
-                    </div>
-
-                    <div class="chat-bottom">
-
-                        <span>
-                            Thanks bro 👍
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="chat-item"
-                 data-name="Tech Team">
-
-                <div class="avatar avatar-red">
-                    <i class="fa-solid fa-users"></i>
-                </div>
-
-                <div class="chat-info">
-
-                    <div class="chat-top">
-                        <strong>Tech Team</strong>
-                        <time>Yesterday</time>
-                    </div>
-
-                    <div class="chat-bottom">
-
-                        <span>
-                            James: Project update...
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="chat-item"
-                 data-name="Jessica">
-
-                <div class="avatar avatar-pink">
-                    J
-                </div>
-
-                <div class="chat-info">
-
-                    <div class="chat-top">
-                        <strong>Jessica</strong>
-                        <time>Yesterday</time>
-                    </div>
-
-                    <div class="chat-bottom">
-
-                        <span>
-                            That's amazing!
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= CONVERSATION ================= -->
-
-    <main class="conversation">
-
-        <!-- CHAT HEADER -->
-
-        <header class="conversation-header">
-
-            <button class="mobile-back" id="backButton">
-                <i class="fa-solid fa-arrow-left"></i>
-            </button>
-
-            <div class="conversation-user">
-
-                <div class="avatar avatar-purple">
-                    S
-                    <span class="online-dot"></span>
+                <div class="avatar">
+                    JD
                 </div>
 
                 <div>
-                    <strong>Sarah</strong>
+                    <div class="user-name">
+                        John Doe
+                    </div>
 
-                    <small>
-                        <span class="online-text">
-                            ● Online
-                        </span>
-                    </small>
-
+                    <div class="status">
+                        ● Online
+                    </div>
                 </div>
 
             </div>
 
+            <div class="header-actions">
 
-            <div class="conversation-actions">
-
-                <button>
+                <button class="icon-btn">
                     <i class="fa-solid fa-phone"></i>
                 </button>
 
-                <button>
+                <button class="icon-btn">
                     <i class="fa-solid fa-video"></i>
                 </button>
 
-                <button>
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-
-                <button>
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                <button class="icon-btn">
+                    <i class="fa-solid fa-ellipsis"></i>
                 </button>
 
             </div>
@@ -333,215 +364,75 @@
 
 
         <!-- MESSAGES -->
-
-        <div class="messages" id="messages">
-
-            <div class="date-divider">
-                <span>Today</span>
-            </div>
-
+        <section class="messages">
 
             <div class="message received">
 
-                <div class="message-bubble">
+                Hey! 👋 Welcome to Voxa.
 
-                    <p>
-                        Hey! 👋
-                    </p>
-
-                    <time>
-                        12:38
-                    </time>
-
-                </div>
-
-            </div>
-
-
-            <div class="message received">
-
-                <div class="message-bubble">
-
-                    <p>
-                        How are you doing today?
-                    </p>
-
-                    <time>
-                        12:39
-                    </time>
-
-                </div>
+                <span class="message-time">
+                    12:30 PM
+                </span>
 
             </div>
 
 
             <div class="message sent">
 
-                <div class="message-bubble">
+                Thanks! Voxa looks amazing.
 
-                    <p>
-                        I'm doing great! Thanks for asking 😊
-                    </p>
-
-                    <time>
-                        12:39
-                        <i class="fa-solid fa-check-double"></i>
-                    </time>
-
-                </div>
-
-            </div>
-
-
-            <div class="message sent">
-
-                <div class="message-bubble">
-
-                    <p>
-                        I'm currently working on something exciting.
-                    </p>
-
-                    <time>
-                        12:40
-                        <i class="fa-solid fa-check-double"></i>
-                    </time>
-
-                </div>
+                <span class="message-time">
+                    12:31 PM
+                </span>
 
             </div>
 
 
             <div class="message received">
 
-                <div class="message-bubble">
+                This is your new place to connect, chat and share.
 
-                    <p>
-                        Really? Tell me about it! 😄
-                    </p>
-
-                    <time>
-                        12:40
-                    </time>
-
-                </div>
+                <span class="message-time">
+                    12:32 PM
+                </span>
 
             </div>
 
-        </div>
+
+            <div class="message sent">
+
+                I can't wait to try it! 🚀
+
+                <span class="message-time">
+                    12:33 PM
+                </span>
+
+            </div>
+
+        </section>
 
 
         <!-- MESSAGE INPUT -->
+        <div class="message-input">
 
-        <div class="message-input-area">
-
-            <button class="input-button">
-                <i class="fa-regular fa-face-smile"></i>
-            </button>
-
-            <button class="input-button">
+            <button class="icon-btn">
                 <i class="fa-solid fa-paperclip"></i>
             </button>
 
             <input
                 type="text"
-                id="messageInput"
                 placeholder="Type a message..."
             >
 
-            <button
-                class="send-button"
-                id="sendButton">
-
+            <button class="send-btn">
                 <i class="fa-solid fa-paper-plane"></i>
-
             </button>
 
         </div>
 
     </main>
 
-
-    <!-- ================= PROFILE PANEL ================= -->
-
-    <aside class="profile-panel">
-
-        <div class="profile-header">
-
-            <h2>Profile</h2>
-
-            <button>
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-        </div>
-
-
-        <div class="profile-content">
-
-            <div class="large-avatar avatar-purple">
-                S
-                <span class="online-dot"></span>
-            </div>
-
-            <h2>Sarah</h2>
-
-            <p class="profile-status">
-                Online
-            </p>
-
-
-            <div class="profile-section">
-
-                <span>About</span>
-
-                <p>
-                    Hey there! I'm using VOXA.
-                </p>
-
-            </div>
-
-
-            <div class="profile-section">
-
-                <span>Phone</span>
-
-                <p>
-                    +256 7XX XXX XXX
-                </p>
-
-            </div>
-
-
-            <div class="profile-section">
-
-                <span>Media, links and documents</span>
-
-                <div class="media-preview">
-
-                    <div>
-                        <i class="fa-solid fa-image"></i>
-                    </div>
-
-                    <div>
-                        <i class="fa-solid fa-file"></i>
-                    </div>
-
-                    <div>
-                        <i class="fa-solid fa-link"></i>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </aside>
-
 </div>
-
-
-<script src="script.js"></script>
 
 </body>
 </html>
