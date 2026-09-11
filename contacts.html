@@ -1,599 +1,657 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>VOXA | Contacts</title>
+<meta charset="UTF-8">
 
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
+<title>VOXA | Contacts</title>
 
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial, sans-serif;
-        }
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-        body{
-            background:#f5f6fb;
-            color:#202124;
-        }
+<style>
 
-        .app{
-            min-height:100vh;
-            display:flex;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
 
-        /* SIDEBAR */
+body{
+    background:#f5f6fb;
+    color:#202124;
+}
 
-        .sidebar{
-            width:260px;
-            background:#ffffff;
-            border-right:1px solid #e5e7eb;
-            padding:25px 18px;
-        }
+.app{
+    min-height:100vh;
+    display:flex;
+}
 
-        .logo{
-            display:flex;
-            align-items:center;
-            gap:12px;
-            color:#6c63ff;
-            font-size:25px;
-            font-weight:bold;
-            margin-bottom:35px;
-        }
+/* SIDEBAR */
 
-        .logo-icon{
-            width:45px;
-            height:45px;
-            background:#6c63ff;
-            color:white;
-            border-radius:14px;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-        }
+.sidebar{
+    width:260px;
+    background:#fff;
+    border-right:1px solid #e5e7eb;
+    padding:25px 18px;
+}
 
-        nav{
-            display:flex;
-            flex-direction:column;
-            gap:8px;
-        }
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#6c63ff;
+    font-size:25px;
+    font-weight:bold;
+    margin-bottom:35px;
+}
 
-        .nav-item{
-            width:100%;
-            padding:14px;
-            border:none;
-            background:transparent;
-            border-radius:12px;
-            display:flex;
-            align-items:center;
-            gap:14px;
-            color:#666;
-            font-size:15px;
-            cursor:pointer;
-            text-align:left;
-            transition:.3s;
-        }
+.logo-icon{
+    width:45px;
+    height:45px;
+    background:#6c63ff;
+    color:white;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
 
-        .nav-item:hover{
-            background:#f0efff;
-            color:#6c63ff;
-        }
+nav{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
 
-        .nav-item.active{
-            background:#6c63ff;
-            color:white;
-        }
+.nav-item{
+    width:100%;
+    padding:14px;
+    border:none;
+    background:transparent;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    color:#666;
+    font-size:15px;
+    cursor:pointer;
+    text-align:left;
+    transition:.3s;
+}
 
-        /* MAIN */
+.nav-item:hover{
+    background:#f0efff;
+    color:#6c63ff;
+}
 
-        .main{
-            flex:1;
-            padding:35px;
-        }
+.nav-item.active{
+    background:#6c63ff;
+    color:white;
+}
 
-        .top{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            margin-bottom:30px;
-        }
+/* MAIN */
 
-        .top h1{
-            font-size:30px;
-        }
+.main{
+    flex:1;
+    padding:35px;
+}
 
-        .top p{
-            color:#777;
-            margin-top:7px;
-        }
+/* TOP */
 
-        .add-btn{
-            border:none;
-            background:#6c63ff;
-            color:white;
-            padding:13px 20px;
-            border-radius:12px;
-            cursor:pointer;
-            font-size:14px;
-        }
+.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
 
-        .add-btn:hover{
-            background:#5148e5;
-        }
+.top h1{
+    font-size:30px;
+}
 
-        /* SEARCH */
+.top p{
+    color:#777;
+    margin-top:7px;
+}
 
-        .search{
-            background:white;
-            padding:15px 20px;
-            border-radius:15px;
-            display:flex;
-            align-items:center;
-            gap:12px;
-            margin-bottom:25px;
-            border:1px solid #e5e7eb;
-        }
+.add-btn{
+    border:none;
+    background:#6c63ff;
+    color:white;
+    padding:13px 20px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:14px;
+    transition:.3s;
+}
 
-        .search i{
-            color:#777;
-        }
+.add-btn:hover{
+    background:#5148e5;
+    transform:translateY(-2px);
+}
 
-        .search input{
-            border:none;
-            outline:none;
-            width:100%;
-            font-size:15px;
-        }
+/* SEARCH */
 
-        /* CONTACT GRID */
+.search{
+    background:white;
+    padding:15px 20px;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:25px;
+    border:1px solid #e5e7eb;
+}
 
-        .contacts{
-            display:grid;
-            grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-            gap:20px;
-        }
+.search i{
+    color:#777;
+}
 
-        .contact-card{
-            background:white;
-            padding:22px;
-            border-radius:18px;
-            border:1px solid #e5e7eb;
-            transition:.3s;
-        }
+.search input{
+    border:none;
+    outline:none;
+    width:100%;
+    font-size:15px;
+}
 
-        .contact-card:hover{
-            transform:translateY(-5px);
-            box-shadow:0 12px 30px rgba(0,0,0,.08);
-        }
+/* CONTACT GRID */
 
-        .contact-top{
-            display:flex;
-            align-items:center;
-            gap:14px;
-        }
+.contacts{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fill,minmax(250px,1fr));
+    gap:20px;
+}
 
-        .avatar{
-            width:55px;
-            height:55px;
-            border-radius:50%;
-            background:linear-gradient(135deg,#6c63ff,#8e85ff);
-            color:white;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-weight:bold;
-            font-size:18px;
-        }
+.contact-card{
+    background:white;
+    padding:22px;
+    border-radius:18px;
+    border:1px solid #e5e7eb;
+    transition:.3s;
+}
 
-        .contact-name{
-            font-weight:bold;
-            font-size:16px;
-        }
+.contact-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+}
 
-        .online{
-            color:#22c55e;
-            font-size:12px;
-            margin-top:5px;
-        }
+.contact-top{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
 
-        .offline{
-            color:#999;
-            font-size:12px;
-            margin-top:5px;
-        }
+.avatar{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:linear-gradient(
+        135deg,
+        #6c63ff,
+        #8e85ff
+    );
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    font-size:18px;
+}
 
-        .contact-actions{
-            display:flex;
-            gap:10px;
-            margin-top:20px;
-        }
+.contact-name{
+    font-weight:bold;
+    font-size:16px;
+}
 
-        .chat-btn{
-            flex:1;
-            border:none;
-            padding:11px;
-            border-radius:10px;
-            background:#6c63ff;
-            color:white;
-            cursor:pointer;
-        }
+.online{
+    color:#22c55e;
+    font-size:12px;
+    margin-top:5px;
+}
 
-        .profile-btn{
-            width:45px;
-            border:none;
-            border-radius:10px;
-            background:#f1f2f6;
-            cursor:pointer;
-        }
+.offline{
+    color:#999;
+    font-size:12px;
+    margin-top:5px;
+}
 
-        .profile-btn:hover{
-            background:#e4e5eb;
-        }
+/* ACTIONS */
 
-        /* MOBILE */
+.contact-actions{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
 
-        @media(max-width:700px){
+.chat-btn{
+    flex:1;
+    border:none;
+    padding:11px;
+    border-radius:10px;
+    background:#6c63ff;
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
 
-            .sidebar{
-                width:70px;
-                padding:20px 8px;
-            }
+.chat-btn:hover{
+    background:#5148e5;
+}
 
-            .logo span{
-                display:none;
-            }
+.profile-btn{
+    width:45px;
+    border:none;
+    border-radius:10px;
+    background:#f1f2f6;
+    cursor:pointer;
+}
 
-            .logo{
-                justify-content:center;
-            }
+.profile-btn:hover{
+    background:#e4e5eb;
+}
 
-            .nav-item{
-                justify-content:center;
-            }
+/* NO RESULTS */
 
-            .nav-item span{
-                display:none;
-            }
+.no-results{
+    display:none;
+    text-align:center;
+    padding:50px;
+    color:#777;
+}
 
-            .main{
-                padding:20px;
-            }
+.no-results i{
+    font-size:45px;
+    margin-bottom:15px;
+    color:#aaa;
+}
 
-            .top{
-                align-items:flex-start;
-                gap:15px;
-            }
+/* MODAL */
 
-            .top h1{
-                font-size:24px;
-            }
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.5);
+    align-items:center;
+    justify-content:center;
+    z-index:1000;
+}
 
-            .add-btn{
-                padding:10px;
-            }
+.modal-box{
+    background:white;
+    width:90%;
+    max-width:400px;
+    padding:30px;
+    border-radius:20px;
+    position:relative;
+    box-shadow:0 20px 50px rgba(0,0,0,.2);
+}
 
-        }
+.close{
+    position:absolute;
+    right:20px;
+    top:15px;
+    border:none;
+    background:none;
+    font-size:25px;
+    cursor:pointer;
+}
 
-    </style>
+.modal-box h2{
+    margin-bottom:20px;
+}
+
+.modal-box input{
+    width:100%;
+    padding:13px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    margin-bottom:12px;
+    outline:none;
+}
+
+.modal-submit{
+    width:100%;
+    padding:13px;
+    border:none;
+    background:#6c63ff;
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    .sidebar{
+        width:70px;
+        padding:20px 8px;
+    }
+
+    .logo span{
+        display:none;
+    }
+
+    .logo{
+        justify-content:center;
+    }
+
+    .nav-item{
+        justify-content:center;
+    }
+
+    .nav-item span{
+        display:none;
+    }
+
+    .main{
+        padding:20px;
+    }
+
+    .top{
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .top h1{
+        font-size:24px;
+    }
+
+    .add-btn{
+        padding:10px;
+    }
+
+}
+
+</style>
+
 </head>
 
 <body>
 
 <div class="app">
 
-    <!-- SIDEBAR -->
+<!-- SIDEBAR -->
 
-    <aside class="sidebar">
+<aside class="sidebar">
 
-        <div class="logo">
+<div class="logo">
 
-            <div class="logo-icon">
-                <i class="fa-solid fa-comment"></i>
-            </div>
+<div class="logo-icon">
+<i class="fa-solid fa-comment"></i>
+</div>
 
-            <span>VOXA</span>
-
-        </div>
-
-
-        <nav>
-
-            <button class="nav-item"
-            onclick="location.href='index.html'">
-
-                <i class="fa-solid fa-comments"></i>
-                <span>Chats</span>
-
-            </button>
-
-
-            <button class="nav-item active">
-
-                <i class="fa-solid fa-user-group"></i>
-                <span>Contacts</span>
-
-            </button>
-
-
-            <button class="nav-item">
-
-                <i class="fa-solid fa-phone"></i>
-                <span>Calls</span>
-
-            </button>
-
-
-            <button class="nav-item">
-
-                <i class="fa-solid fa-bell"></i>
-                <span>Notifications</span>
-
-            </button>
-
-
-            <button class="nav-item">
-
-                <i class="fa-solid fa-gear"></i>
-                <span>Settings</span>
-
-            </button>
-
-        </nav>
-
-    </aside>
-
-
-    <!-- MAIN CONTENT -->
-
-    <main class="main">
-
-        <div class="top">
-
-            <div>
-
-                <h1>Contacts</h1>
-
-                <p>Connect with people on Voxa</p>
-
-            </div>
-
-            <button class="add-btn">
-
-                <i class="fa-solid fa-user-plus"></i>
-
-                Add Contact
-
-            </button>
-
-        </div>
-
-
-        <!-- SEARCH -->
-
-        <div class="search">
-
-            <i class="fa-solid fa-magnifying-glass"></i>
-
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="Search contacts..."
-                onkeyup="searchContacts()"
-            >
-
-        </div>
-
-
-        <!-- CONTACTS -->
-
-        <div class="contacts" id="contacts">
-
-
-            <div class="contact-card">
-
-                <div class="contact-top">
-
-                    <div class="avatar">
-                        JD
-                    </div>
-
-                    <div>
-
-                        <div class="contact-name">
-                            John Doe
-                        </div>
-
-                        <div class="online">
-                            ● Online
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="contact-actions">
-
-                    <button class="chat-btn">
-                        <i class="fa-solid fa-comment"></i>
-                        Message
-                    </button>
-
-                    <button class="profile-btn">
-                        <i class="fa-solid fa-user"></i>
-                    </button>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="contact-card">
-
-                <div class="contact-top">
-
-                    <div class="avatar">
-                        AS
-                    </div>
-
-                    <div>
-
-                        <div class="contact-name">
-                            Alice Smith
-                        </div>
-
-                        <div class="online">
-                            ● Online
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="contact-actions">
-
-                    <button class="chat-btn">
-                        <i class="fa-solid fa-comment"></i>
-                        Message
-                    </button>
-
-                    <button class="profile-btn">
-                        <i class="fa-solid fa-user"></i>
-                    </button>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="contact-card">
-
-                <div class="contact-top">
-
-                    <div class="avatar">
-                        MK
-                    </div>
-
-                    <div>
-
-                        <div class="contact-name">
-                            Mike King
-                        </div>
-
-                        <div class="offline">
-                            ● Offline
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="contact-actions">
-
-                    <button class="chat-btn">
-                        <i class="fa-solid fa-comment"></i>
-                        Message
-                    </button>
-
-                    <button class="profile-btn">
-                        <i class="fa-solid fa-user"></i>
-                    </button>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="contact-card">
-
-                <div class="contact-top">
-
-                    <div class="avatar">
-                        SA
-                    </div>
-
-                    <div>
-
-                        <div class="contact-name">
-                            Sarah Adams
-                        </div>
-
-                        <div class="online">
-                            ● Online
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="contact-actions">
-
-                    <button class="chat-btn">
-                        <i class="fa-solid fa-comment"></i>
-                        Message
-                    </button>
-
-                    <button class="profile-btn">
-                        <i class="fa-solid fa-user"></i>
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </main>
+<span>VOXA</span>
 
 </div>
 
 
-<script>
+<nav>
 
-function searchContacts(){
+<!-- CHATS -->
 
-    let input =
-        document.getElementById("searchInput")
-        .value
-        .toLowerCase();
+<button
+class="nav-item"
+onclick="goTo('index.html')">
 
-    let contacts =
-        document.querySelectorAll(".contact-card");
+<i class="fa-solid fa-comments"></i>
 
-    contacts.forEach(function(contact){
+<span>Chats</span>
 
-        let name =
-            contact.querySelector(".contact-name")
-            .textContent
-            .toLowerCase();
+</button>
 
-        if(name.includes(input)){
 
-            contact.style.display = "block";
+<!-- CONTACTS -->
 
-        }else{
+<button
+class="nav-item active">
 
-            contact.style.display = "none";
+<i class="fa-solid fa-user-group"></i>
 
-        }
+<span>Contacts</span>
 
-    });
+</button>
 
-}
 
-</script>
+<!-- CALLS -->
 
-</body>
-</html>
+<button
+class="nav-item"
+onclick="goTo('calls.html')">
+
+<i class="fa-solid fa-phone"></i>
+
+<span>Calls</span>
+
+</button>
+
+
+<!-- NOTIFICATIONS -->
+
+<button
+class="nav-item"
+onclick="goTo('notifications.html')">
+
+<i class="fa-solid fa-bell"></i>
+
+<span>Notifications</span>
+
+</button>
+
+
+<!-- SETTINGS -->
+
+<button
+class="nav-item"
+onclick="goTo('settings.html')">
+
+<i class="fa-solid fa-gear"></i>
+
+<span>Settings</span>
+
+</button>
+
+</nav>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+
+<div class="top">
+
+<div>
+
+<h1>Contacts</h1>
+
+<p>Connect with people on Voxa</p>
+
+</div>
+
+
+<button
+class="add-btn"
+onclick="openAddContact()">
+
+<i class="fa-solid fa-user-plus"></i>
+
+Add Contact
+
+</button>
+
+</div>
+
+
+<!-- SEARCH -->
+
+<div class="search">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search contacts..."
+oninput="searchContacts()">
+
+</div>
+
+
+<!-- CONTACTS -->
+
+<div
+class="contacts"
+id="contacts">
+
+
+<!-- JOHN -->
+
+<div
+class="contact-card"
+data-name="John Doe">
+
+<div class="contact-top">
+
+<div class="avatar">
+JD
+</div>
+
+<div>
+
+<div class="contact-name">
+John Doe
+</div>
+
+<div class="online">
+● Online
+</div>
+
+</div>
+
+</div>
+
+
+<div class="contact-actions">
+
+<button
+class="chat-btn"
+onclick="messageUser('John Doe')">
+
+<i class="fa-solid fa-comment"></i>
+
+Message
+
+</button>
+
+
+<button
+class="profile-btn"
+onclick="showProfile('John Doe','JD','Online')">
+
+<i class="fa-solid fa-user"></i>
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ALICE -->
+
+<div
+class="contact-card"
+data-name="Alice Smith">
+
+<div class="contact-top">
+
+<div class="avatar">
+AS
+</div>
+
+<div>
+
+<div class="contact-name">
+Alice Smith
+</div>
+
+<div class="online">
+● Online
+</div>
+
+</div>
+
+</div>
+
+
+<div class="contact-actions">
+
+<button
+class="chat-btn"
+onclick="messageUser('Alice Smith')">
+
+<i class="fa-solid fa-comment"></i>
+
+Message
+
+</button>
+
+
+<button
+class="profile-btn"
+onclick="showProfile('Alice Smith','AS','Online')">
+
+<i class="fa-solid fa-user"></i>
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- MIKE -->
+
+<div
+class="contact-card"
+data-name="Mike King">
+
+<div class="contact-top">
+
+<div class="avatar">
+MK
+</div>
+
+<div>
+
+<div class="contact-name">
+Mike King
+</div>
+
+<div class="offline">
+● Offline
+</div>
+
+</div>
+
+</div>
+
+
+<div class="contact-actions">
+
+<button
+class="chat-btn"
+onclick="messageUser('Mike King')">
+
+<i class="fa-sol
+```
