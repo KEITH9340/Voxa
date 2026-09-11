@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VOXA | Connect. Chat. Share.</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-comment"></i>
+            </div>
+
+            <span>VOXA</span>
+        </div>
+
+        <nav>
+
+            <button class="nav-item active">
+                <i class="fa-solid fa-comments"></i>
+                <span>Chats</span>
+            </button>
+
+            <button class="nav-item">
+                <i class="fa-solid fa-user-group"></i>
+                <span>Contacts</span>
+            </button>
+
+            <button class="nav-item">
+                <i class="fa-solid fa-circle-notch"></i>
+                <span>Status</span>
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <button class="nav-item">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </button>
+
+            <button class="nav-item" id="themeButton">
+                <i class="fa-solid fa-moon"></i>
+                <span>Dark Mode</span>
+            </button>
+
+            <div class="mini-profile">
+
+                <div class="avatar avatar-blue">
+                    Y
+                </div>
+
+                <div>
+                    <strong>You</strong>
+                    <small>Online</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= CHAT LIST ================= -->
+
+    <section class="chat-list">
+
+        <header class="chat-header">
+
+            <div>
+                <h1>Chats</h1>
+                <p>Stay connected</p>
+            </div>
+
+            <button class="header-button">
+                <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+
+        </header>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search conversations..."
+            >
+
+        </div>
+
+
+        <!-- FILTERS -->
+
+        <div class="filters">
+
+            <button class="filter active-filter">
+                All
+            </button>
+
+            <button class="filter">
+                Unread
+            </button>
+
+            <button class="filter">
+                Groups
+            </button>
+
+        </div>
+
+
+        <!-- CHAT ITEMS -->
+
+        <div class="chats" id="chatContainer">
+
+            <div class="chat-item selected"
+                 data-name="Sarah">
+
+                <div class="avatar avatar-purple">
+                    S
+                </div>
+
+                <div class="chat-info">
+
+                    <div class="chat-top">
+                        <strong>Sarah</strong>
+                        <time>12:40</time>
+                    </div>
+
+                    <div class="chat-bottom">
+
+                        <span>
+                            Hey! How are you?
+                        </span>
+
+                        <b class="unread">
+                            2
+                        </b>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="chat-item"
+                 data-name="David">
+
+                <div class="avatar avatar-green">
+                    D
+                </div>
+
+                <div class="chat-info">
+
+                    <div class="chat-top">
+                        <strong>David</strong>
+                        <time>11:25</time>
+                    </div>
+
+                    <div class="chat-bottom">
+
+                        <span>
+                            See you tomorrow!
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="chat-item"
+                 data-name="Michael">
+
+                <div class="avatar avatar-orange">
+                    M
+                </div>
+
+                <div class="chat-info">
+
+                    <div class="chat-top">
+                        <strong>Michael</strong>
+                        <time>10:14</time>
+                    </div>
+
+                    <div class="chat-bottom">
+
+                        <span>
+                            Thanks bro 👍
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="chat-item"
+                 data-name="Tech Team">
+
+                <div class="avatar avatar-red">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+
+                <div class="chat-info">
+
+                    <div class="chat-top">
+                        <strong>Tech Team</strong>
+                        <time>Yesterday</time>
+                    </div>
+
+                    <div class="chat-bottom">
+
+                        <span>
+                            James: Project update...
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="chat-item"
+                 data-name="Jessica">
+
+                <div class="avatar avatar-pink">
+                    J
+                </div>
+
+                <div class="chat-info">
+
+                    <div class="chat-top">
+                        <strong>Jessica</strong>
+                        <time>Yesterday</time>
+                    </div>
+
+                    <div class="chat-bottom">
+
+                        <span>
+                            That's amazing!
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CONVERSATION ================= -->
+
+    <main class="conversation">
+
+        <!-- CHAT HEADER -->
+
+        <header class="conversation-header">
+
+            <button class="mobile-back" id="backButton">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+
+            <div class="conversation-user">
+
+                <div class="avatar avatar-purple">
+                    S
+                    <span class="online-dot"></span>
+                </div>
+
+                <div>
+                    <strong>Sarah</strong>
+
+                    <small>
+                        <span class="online-text">
+                            ● Online
+                        </span>
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="conversation-actions">
+
+                <button>
+                    <i class="fa-solid fa-phone"></i>
+                </button>
+
+                <button>
+                    <i class="fa-solid fa-video"></i>
+                </button>
+
+                <button>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+                <button>
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- MESSAGES -->
+
+        <div class="messages" id="messages">
+
+            <div class="date-divider">
+                <span>Today</span>
+            </div>
+
+
+            <div class="message received">
+
+                <div class="message-bubble">
+
+                    <p>
+                        Hey! 👋
+                    </p>
+
+                    <time>
+                        12:38
+                    </time>
+
+                </div>
+
+            </div>
+
+
+            <div class="message received">
+
+                <div class="message-bubble">
+
+                    <p>
+                        How are you doing today?
+                    </p>
+
+                    <time>
+                        12:39
+                    </time>
+
+                </div>
+
+            </div>
+
+
+            <div class="message sent">
+
+                <div class="message-bubble">
+
+                    <p>
+                        I'm doing great! Thanks for asking 😊
+                    </p>
+
+                    <time>
+                        12:39
+                        <i class="fa-solid fa-check-double"></i>
+                    </time>
+
+                </div>
+
+            </div>
+
+
+            <div class="message sent">
+
+                <div class="message-bubble">
+
+                    <p>
+                        I'm currently working on something exciting.
+                    </p>
+
+                    <time>
+                        12:40
+                        <i class="fa-solid fa-check-double"></i>
+                    </time>
+
+                </div>
+
+            </div>
+
+
+            <div class="message received">
+
+                <div class="message-bubble">
+
+                    <p>
+                        Really? Tell me about it! 😄
+                    </p>
+
+                    <time>
+                        12:40
+                    </time>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MESSAGE INPUT -->
+
+        <div class="message-input-area">
+
+            <button class="input-button">
+                <i class="fa-regular fa-face-smile"></i>
+            </button>
+
+            <button class="input-button">
+                <i class="fa-solid fa-paperclip"></i>
+            </button>
+
+            <input
+                type="text"
+                id="messageInput"
+                placeholder="Type a message..."
+            >
+
+            <button
+                class="send-button"
+                id="sendButton">
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= PROFILE PANEL ================= -->
+
+    <aside class="profile-panel">
+
+        <div class="profile-header">
+
+            <h2>Profile</h2>
+
+            <button>
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <div class="profile-content">
+
+            <div class="large-avatar avatar-purple">
+                S
+                <span class="online-dot"></span>
+            </div>
+
+            <h2>Sarah</h2>
+
+            <p class="profile-status">
+                Online
+            </p>
+
+
+            <div class="profile-section">
+
+                <span>About</span>
+
+                <p>
+                    Hey there! I'm using VOXA.
+                </p>
+
+            </div>
+
+
+            <div class="profile-section">
+
+                <span>Phone</span>
+
+                <p>
+                    +256 7XX XXX XXX
+                </p>
+
+            </div>
+
+
+            <div class="profile-section">
+
+                <span>Media, links and documents</span>
+
+                <div class="media-preview">
+
+                    <div>
+                        <i class="fa-solid fa-image"></i>
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-file"></i>
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-link"></i>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
