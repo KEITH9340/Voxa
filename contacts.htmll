@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VOXA | Contacts</title>
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#f5f6fb;
+            color:#202124;
+        }
+
+        .app{
+            min-height:100vh;
+            display:flex;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar{
+            width:260px;
+            background:#ffffff;
+            border-right:1px solid #e5e7eb;
+            padding:25px 18px;
+        }
+
+        .logo{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            color:#6c63ff;
+            font-size:25px;
+            font-weight:bold;
+            margin-bottom:35px;
+        }
+
+        .logo-icon{
+            width:45px;
+            height:45px;
+            background:#6c63ff;
+            color:white;
+            border-radius:14px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+        }
+
+        nav{
+            display:flex;
+            flex-direction:column;
+            gap:8px;
+        }
+
+        .nav-item{
+            width:100%;
+            padding:14px;
+            border:none;
+            background:transparent;
+            border-radius:12px;
+            display:flex;
+            align-items:center;
+            gap:14px;
+            color:#666;
+            font-size:15px;
+            cursor:pointer;
+            text-align:left;
+            transition:.3s;
+        }
+
+        .nav-item:hover{
+            background:#f0efff;
+            color:#6c63ff;
+        }
+
+        .nav-item.active{
+            background:#6c63ff;
+            color:white;
+        }
+
+        /* MAIN */
+
+        .main{
+            flex:1;
+            padding:35px;
+        }
+
+        .top{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:30px;
+        }
+
+        .top h1{
+            font-size:30px;
+        }
+
+        .top p{
+            color:#777;
+            margin-top:7px;
+        }
+
+        .add-btn{
+            border:none;
+            background:#6c63ff;
+            color:white;
+            padding:13px 20px;
+            border-radius:12px;
+            cursor:pointer;
+            font-size:14px;
+        }
+
+        .add-btn:hover{
+            background:#5148e5;
+        }
+
+        /* SEARCH */
+
+        .search{
+            background:white;
+            padding:15px 20px;
+            border-radius:15px;
+            display:flex;
+            align-items:center;
+            gap:12px;
+            margin-bottom:25px;
+            border:1px solid #e5e7eb;
+        }
+
+        .search i{
+            color:#777;
+        }
+
+        .search input{
+            border:none;
+            outline:none;
+            width:100%;
+            font-size:15px;
+        }
+
+        /* CONTACT GRID */
+
+        .contacts{
+            display:grid;
+            grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+            gap:20px;
+        }
+
+        .contact-card{
+            background:white;
+            padding:22px;
+            border-radius:18px;
+            border:1px solid #e5e7eb;
+            transition:.3s;
+        }
+
+        .contact-card:hover{
+            transform:translateY(-5px);
+            box-shadow:0 12px 30px rgba(0,0,0,.08);
+        }
+
+        .contact-top{
+            display:flex;
+            align-items:center;
+            gap:14px;
+        }
+
+        .avatar{
+            width:55px;
+            height:55px;
+            border-radius:50%;
+            background:linear-gradient(135deg,#6c63ff,#8e85ff);
+            color:white;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:bold;
+            font-size:18px;
+        }
+
+        .contact-name{
+            font-weight:bold;
+            font-size:16px;
+        }
+
+        .online{
+            color:#22c55e;
+            font-size:12px;
+            margin-top:5px;
+        }
+
+        .offline{
+            color:#999;
+            font-size:12px;
+            margin-top:5px;
+        }
+
+        .contact-actions{
+            display:flex;
+            gap:10px;
+            margin-top:20px;
+        }
+
+        .chat-btn{
+            flex:1;
+            border:none;
+            padding:11px;
+            border-radius:10px;
+            background:#6c63ff;
+            color:white;
+            cursor:pointer;
+        }
+
+        .profile-btn{
+            width:45px;
+            border:none;
+            border-radius:10px;
+            background:#f1f2f6;
+            cursor:pointer;
+        }
+
+        .profile-btn:hover{
+            background:#e4e5eb;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:700px){
+
+            .sidebar{
+                width:70px;
+                padding:20px 8px;
+            }
+
+            .logo span{
+                display:none;
+            }
+
+            .logo{
+                justify-content:center;
+            }
+
+            .nav-item{
+                justify-content:center;
+            }
+
+            .nav-item span{
+                display:none;
+            }
+
+            .main{
+                padding:20px;
+            }
+
+            .top{
+                align-items:flex-start;
+                gap:15px;
+            }
+
+            .top h1{
+                font-size:24px;
+            }
+
+            .add-btn{
+                padding:10px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                <i class="fa-solid fa-comment"></i>
+            </div>
+
+            <span>VOXA</span>
+
+        </div>
+
+
+        <nav>
+
+            <button class="nav-item"
+            onclick="location.href='index.html'">
+
+                <i class="fa-solid fa-comments"></i>
+                <span>Chats</span>
+
+            </button>
+
+
+            <button class="nav-item active">
+
+                <i class="fa-solid fa-user-group"></i>
+                <span>Contacts</span>
+
+            </button>
+
+
+            <button class="nav-item">
+
+                <i class="fa-solid fa-phone"></i>
+                <span>Calls</span>
+
+            </button>
+
+
+            <button class="nav-item">
+
+                <i class="fa-solid fa-bell"></i>
+                <span>Notifications</span>
+
+            </button>
+
+
+            <button class="nav-item">
+
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+
+            </button>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main">
+
+        <div class="top">
+
+            <div>
+
+                <h1>Contacts</h1>
+
+                <p>Connect with people on Voxa</p>
+
+            </div>
+
+            <button class="add-btn">
+
+                <i class="fa-solid fa-user-plus"></i>
+
+                Add Contact
+
+            </button>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <div class="search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search contacts..."
+                onkeyup="searchContacts()"
+            >
+
+        </div>
+
+
+        <!-- CONTACTS -->
+
+        <div class="contacts" id="contacts">
+
+
+            <div class="contact-card">
+
+                <div class="contact-top">
+
+                    <div class="avatar">
+                        JD
+                    </div>
+
+                    <div>
+
+                        <div class="contact-name">
+                            John Doe
+                        </div>
+
+                        <div class="online">
+                            ● Online
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-actions">
+
+                    <button class="chat-btn">
+                        <i class="fa-solid fa-comment"></i>
+                        Message
+                    </button>
+
+                    <button class="profile-btn">
+                        <i class="fa-solid fa-user"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="contact-card">
+
+                <div class="contact-top">
+
+                    <div class="avatar">
+                        AS
+                    </div>
+
+                    <div>
+
+                        <div class="contact-name">
+                            Alice Smith
+                        </div>
+
+                        <div class="online">
+                            ● Online
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-actions">
+
+                    <button class="chat-btn">
+                        <i class="fa-solid fa-comment"></i>
+                        Message
+                    </button>
+
+                    <button class="profile-btn">
+                        <i class="fa-solid fa-user"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="contact-card">
+
+                <div class="contact-top">
+
+                    <div class="avatar">
+                        MK
+                    </div>
+
+                    <div>
+
+                        <div class="contact-name">
+                            Mike King
+                        </div>
+
+                        <div class="offline">
+                            ● Offline
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-actions">
+
+                    <button class="chat-btn">
+                        <i class="fa-solid fa-comment"></i>
+                        Message
+                    </button>
+
+                    <button class="profile-btn">
+                        <i class="fa-solid fa-user"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="contact-card">
+
+                <div class="contact-top">
+
+                    <div class="avatar">
+                        SA
+                    </div>
+
+                    <div>
+
+                        <div class="contact-name">
+                            Sarah Adams
+                        </div>
+
+                        <div class="online">
+                            ● Online
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-actions">
+
+                    <button class="chat-btn">
+                        <i class="fa-solid fa-comment"></i>
+                        Message
+                    </button>
+
+                    <button class="profile-btn">
+                        <i class="fa-solid fa-user"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script>
+
+function searchContacts(){
+
+    let input =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    let contacts =
+        document.querySelectorAll(".contact-card");
+
+    contacts.forEach(function(contact){
+
+        let name =
+            contact.querySelector(".contact-name")
+            .textContent
+            .toLowerCase();
+
+        if(name.includes(input)){
+
+            contact.style.display = "block";
+
+        }else{
+
+            contact.style.display = "none";
+
+        }
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
