@@ -1,535 +1,551 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>VOXA | Connect. Chat. Share.</title>
-
-    <!-- VOXA Browser Default Icon -->
-    <link rel="icon" type="image/png" href="voxa logo.png">
-    <link rel="shortcut icon" type="image/png" href="voxa logo.png">
-    <link rel="apple-touch-icon" href="voxa logo.png">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: #f5f7ff;
-            color: #111936;
-            overflow-x: hidden;
-        }
-
-        /* ================= NAVBAR ================= */
-
-        nav {
-            width: 100%;
-            height: 75px;
-            background: rgba(255,255,255,0.95);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 7%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
-            backdrop-filter: blur(15px);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-
-        /* YOUR UPLOADED VOXA IMAGE */
-        .logo img {
-            width: 48px;
-            height: 48px;
-            object-fit: contain;
-            border-radius: 12px;
-        }
-
-        .logo span {
-            font-size: 27px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            background: linear-gradient(90deg, #087cff, #673cff, #c52cff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #172044;
-            font-weight: 600;
-            transition: .3s;
-        }
-
-        .nav-links a:hover {
-            color: #5b3cff;
-        }
-
-        .login-btn {
-            background: linear-gradient(135deg, #405cff, #713cff);
-            color: white !important;
-            padding: 12px 24px;
-            border-radius: 30px;
-            box-shadow: 0 8px 20px rgba(77,65,255,.25);
-        }
-
-        .login-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .menu-btn {
-            display: none;
-            font-size: 25px;
-            cursor: pointer;
-        }
-
-        /* ================= HERO ================= */
-
-        .hero {
-            min-height: 100vh;
-            padding: 140px 7% 80px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 50px;
-            background:
-                radial-gradient(circle at 10% 20%, rgba(0,204,255,.15), transparent 30%),
-                radial-gradient(circle at 90% 20%, rgba(126,53,255,.15), transparent 30%),
-                #f5f7ff;
-        }
-
-        .hero-text {
-            max-width: 600px;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 9px 18px;
-            border-radius: 30px;
-            background: #e9edff;
-            color: #5540df;
-            font-weight: bold;
-            margin-bottom: 22px;
-        }
-
-        .hero h1 {
-            font-size: clamp(45px, 6vw, 78px);
-            line-height: 1;
-            margin-bottom: 25px;
-        }
-
-        .gradient-text {
-            background: linear-gradient(
-                90deg,
-                #08bfff,
-                #315cff,
-                #a62cff
-            );
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 18px;
-            line-height: 1.7;
-            color: #626b86;
-            margin-bottom: 32px;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            text-decoration: none;
-            padding: 15px 28px;
-            border-radius: 35px;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 9px;
-            transition: .3s;
-        }
-
-        .primary {
-            color: white;
-            background: linear-gradient(135deg,#087cff,#7634ff);
-            box-shadow: 0 12px 30px rgba(74,65,255,.25);
-        }
-
-        .secondary {
-            border: 2px solid #6b5cff;
-            color: #5845e9;
-            background: white;
-        }
-
-        .btn:hover {
-            transform: translateY(-4px);
-        }
-
-        /* ================= LOGO DISPLAY ================= */
-
-        .hero-logo {
-            width: 440px;
-            height: 440px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        .hero-logo::before {
-            content: "";
-            position: absolute;
-            width: 370px;
-            height: 370px;
-            background: linear-gradient(
-                135deg,
-                rgba(0,213,255,.2),
-                rgba(110,50,255,.2)
-            );
-            border-radius: 50%;
-            filter: blur(20px);
-            animation: glow 4s infinite alternate;
-        }
-
-        .hero-logo img {
-            width: 360px;
-            height: 360px;
-            object-fit: contain;
-            border-radius: 35px;
-            position: relative;
-            z-index: 2;
-            animation: float 4s ease-in-out infinite;
-            box-shadow: 0 30px 70px rgba(35,40,130,.2);
-        }
-
-        @keyframes float {
-            0%,100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-15px);
-            }
-        }
-
-        @keyframes glow {
-            from {
-                transform: scale(.9);
-                opacity: .6;
-            }
-
-            to {
-                transform: scale(1.1);
-                opacity: 1;
-            }
-        }
-
-        /* ================= FEATURES ================= */
-
-        .features {
-            padding: 90px 7%;
-            background: white;
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 42px;
-            margin-bottom: 15px;
-        }
-
-        .section-subtitle {
-            color: #707891;
-            max-width: 600px;
-            margin: auto;
-            line-height: 1.6;
-        }
-
-        .feature-grid {
-            margin-top: 55px;
-            display: grid;
-            grid-template-columns: repeat(3,1fr);
-            gap: 25px;
-        }
-
-        .feature-card {
-            padding: 35px 25px;
-            border-radius: 22px;
-            background: #f8f9ff;
-            border: 1px solid #e7e9f5;
-            transition: .3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 45px rgba(40,45,100,.12);
-        }
-
-        .feature-icon {
-            width: 65px;
-            height: 65px;
-            margin: 0 auto 20px;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 25px;
-            background: linear-gradient(135deg,#08bfff,#6936ff);
-        }
-
-        .feature-card h3 {
-            margin-bottom: 12px;
-        }
-
-        .feature-card p {
-            color: #737b91;
-            line-height: 1.6;
-        }
-
-        /* ================= CTA ================= */
-
-        .cta {
-            margin: 80px 7%;
-            padding: 70px 30px;
-            text-align: center;
-            border-radius: 35px;
-            color: white;
-            background: linear-gradient(
-                135deg,
-                #087cff,
-                #563dff,
-                #b62bff
-            );
-            box-shadow: 0 25px 60px rgba(79,55,220,.25);
-        }
-
-        .cta h2 {
-            font-size: 42px;
-            margin-bottom: 15px;
-        }
-
-        .cta p {
-            opacity: .9;
-            margin-bottom: 28px;
-        }
-
-        .cta .btn {
-            background: white;
-            color: #563dff;
-        }
-
-        /* ================= FOOTER ================= */
-
-        footer {
-            background: #07111f;
-            color: white;
-            padding: 60px 7% 25px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 50px;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 18px;
-        }
-
-        .footer-logo img {
-            width: 55px;
-            height: 55px;
-            object-fit: contain;
-            border-radius: 12px;
-        }
-
-        .footer-logo span {
-            font-size: 25px;
-            font-weight: bold;
-        }
-
-        footer p {
-            color: #aeb7c9;
-            line-height: 1.7;
-        }
-
-        footer h3 {
-            margin-bottom: 18px;
-        }
-
-        footer ul {
-            list-style: none;
-        }
-
-        footer li {
-            margin-bottom: 12px;
-        }
-
-        footer a {
-            color: #aeb7c9;
-            text-decoration: none;
-            transition: .3s;
-        }
-
-        footer a:hover {
-            color: white;
-        }
-
-        .socials {
-            display: flex;
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        .socials a {
-            width: 42px;
-            height: 42px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: #122039;
-            color: white;
-        }
-
-        .socials a:hover {
-            background: #5b43ff;
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            margin-top: 45px;
-            padding-top: 22px;
-            border-top: 1px solid #1c2a40;
-            text-align: center;
-            color: #8e98aa;
-        }
-
-        /* ================= MOBILE ================= */
-
-        @media(max-width:900px) {
-
-            .nav-links {
-                position: absolute;
-                top: 75px;
-                left: 0;
-                width: 100%;
-                background: white;
-                display: none;
-                flex-direction: column;
-                padding: 25px;
-                box-shadow: 0 15px 25px rgba(0,0,0,.1);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .menu-btn {
-                display: block;
-            }
-
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding-top: 130px;
-            }
-
-            .buttons {
-                justify-content: center;
-            }
-
-            .hero-logo {
-                width: 330px;
-                height: 330px;
-            }
-
-            .hero-logo img {
-                width: 280px;
-                height: 280px;
-            }
-
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media(max-width:500px) {
-
-            nav {
-                padding: 0 5%;
-            }
-
-            .logo span {
-                font-size: 22px;
-            }
-
-            .hero {
-                padding-left: 5%;
-                padding-right: 5%;
-            }
-
-            .hero h1 {
-                font-size: 48px;
-            }
-
-            .hero-logo {
-                width: 280px;
-                height: 280px;
-            }
-
-            .hero-logo img {
-                width: 240px;
-                height: 240px;
-            }
-
-            .cta {
-                margin: 50px 5%;
-            }
-
-            .cta h2 {
-                font-size: 32px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VOXA | Connect. Chat. Share.</title>
+
+<!-- VOXA LOGO AS BROWSER DEFAULT ICON -->
+<link rel="icon" type="image/png" href="voxa logo.png">
+<link rel="shortcut icon" type="image/png" href="voxa logo.png">
+<link rel="apple-touch-icon" href="voxa logo.png">
+
+<!-- FONT AWESOME -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f5f7ff;
+    color:#111936;
+    overflow-x:hidden;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+    width:100%;
+    height:75px;
+    background:rgba(255,255,255,.96);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1000;
+    box-shadow:0 5px 25px rgba(0,0,0,.08);
+    backdrop-filter:blur(15px);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+}
+
+/* VOXA LOGO */
+.logo img{
+    width:48px;
+    height:48px;
+    object-fit:contain;
+    border-radius:12px;
+}
+
+.logo span{
+    font-size:27px;
+    font-weight:800;
+    letter-spacing:2px;
+    background:linear-gradient(90deg,#087cff,#673cff,#c52cff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:32px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#172044;
+    font-weight:600;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#5b3cff;
+}
+
+.login-btn{
+    background:linear-gradient(135deg,#405cff,#713cff);
+    color:white!important;
+    padding:12px 24px;
+    border-radius:30px;
+    box-shadow:0 8px 20px rgba(77,65,255,.25);
+}
+
+.menu-btn{
+    display:none;
+    font-size:25px;
+    cursor:pointer;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:100vh;
+    padding:140px 7% 80px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:50px;
+
+    background:
+    radial-gradient(
+        circle at 10% 20%,
+        rgba(0,204,255,.15),
+        transparent 30%
+    ),
+    radial-gradient(
+        circle at 90% 20%,
+        rgba(126,53,255,.15),
+        transparent 30%
+    ),
+    #f5f7ff;
+}
+
+.hero-text{
+    max-width:600px;
+}
+
+.badge{
+    display:inline-block;
+    padding:9px 18px;
+    border-radius:30px;
+    background:#e9edff;
+    color:#5540df;
+    font-weight:bold;
+    margin-bottom:22px;
+}
+
+.hero h1{
+    font-size:clamp(45px,6vw,78px);
+    line-height:1;
+    margin-bottom:25px;
+}
+
+.gradient-text{
+    background:linear-gradient(
+        90deg,
+        #08bfff,
+        #315cff,
+        #a62cff
+    );
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    font-size:18px;
+    line-height:1.7;
+    color:#626b86;
+    margin-bottom:32px;
+}
+
+.buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    text-decoration:none;
+    padding:15px 28px;
+    border-radius:35px;
+    font-weight:bold;
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    transition:.3s;
+}
+
+.primary{
+    color:white;
+    background:linear-gradient(135deg,#087cff,#7634ff);
+    box-shadow:0 12px 30px rgba(74,65,255,.25);
+}
+
+.secondary{
+    border:2px solid #6b5cff;
+    color:#5845e9;
+    background:white;
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+}
+
+/* ================= LOGO DISPLAY ================= */
+
+.hero-logo{
+    width:440px;
+    height:440px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
+
+.hero-logo::before{
+    content:"";
+    position:absolute;
+    width:370px;
+    height:370px;
+    background:linear-gradient(
+        135deg,
+        rgba(0,213,255,.2),
+        rgba(110,50,255,.2)
+    );
+    border-radius:50%;
+    filter:blur(20px);
+    animation:glow 4s infinite alternate;
+}
+
+/* VOXA LOGO */
+.hero-logo img{
+    width:360px;
+    height:360px;
+    object-fit:contain;
+    border-radius:35px;
+    position:relative;
+    z-index:2;
+    animation:float 4s ease-in-out infinite;
+    box-shadow:0 30px 70px rgba(35,40,130,.2);
+}
+
+@keyframes float{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-15px);
+    }
+
+}
+
+@keyframes glow{
+
+    from{
+        transform:scale(.9);
+        opacity:.6;
+    }
+
+    to{
+        transform:scale(1.1);
+        opacity:1;
+    }
+
+}
+
+/* ================= FEATURES ================= */
+
+.features{
+    padding:90px 7%;
+    background:white;
+    text-align:center;
+}
+
+.section-title{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.section-subtitle{
+    color:#707891;
+    max-width:600px;
+    margin:auto;
+    line-height:1.6;
+}
+
+.feature-grid{
+    margin-top:55px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.feature-card{
+    padding:35px 25px;
+    border-radius:22px;
+    background:#f8f9ff;
+    border:1px solid #e7e9f5;
+    transition:.3s;
+}
+
+.feature-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 45px rgba(40,45,100,.12);
+}
+
+.feature-icon{
+    width:65px;
+    height:65px;
+    margin:0 auto 20px;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    font-size:25px;
+    background:linear-gradient(135deg,#08bfff,#6936ff);
+}
+
+.feature-card h3{
+    margin-bottom:12px;
+}
+
+.feature-card p{
+    color:#737b91;
+    line-height:1.6;
+}
+
+/* ================= CTA ================= */
+
+.cta{
+    margin:80px 7%;
+    padding:70px 30px;
+    text-align:center;
+    border-radius:35px;
+    color:white;
+
+    background:linear-gradient(
+        135deg,
+        #087cff,
+        #563dff,
+        #b62bff
+    );
+
+    box-shadow:0 25px 60px rgba(79,55,220,.25);
+}
+
+.cta h2{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.cta p{
+    opacity:.9;
+    margin-bottom:28px;
+}
+
+.cta .btn{
+    background:white;
+    color:#563dff;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#07111f;
+    color:white;
+    padding:60px 7% 25px;
+}
+
+.footer-content{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:50px;
+}
+
+.footer-logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:18px;
+}
+
+/* VOXA LOGO */
+.footer-logo img{
+    width:55px;
+    height:55px;
+    object-fit:contain;
+    border-radius:12px;
+}
+
+.footer-logo span{
+    font-size:25px;
+    font-weight:bold;
+}
+
+footer p{
+    color:#aeb7c9;
+    line-height:1.7;
+}
+
+footer h3{
+    margin-bottom:18px;
+}
+
+footer ul{
+    list-style:none;
+}
+
+footer li{
+    margin-bottom:12px;
+}
+
+footer a{
+    color:#aeb7c9;
+    text-decoration:none;
+    transition:.3s;
+}
+
+footer a:hover{
+    color:white;
+}
+
+.socials{
+    display:flex;
+    gap:12px;
+    margin-top:20px;
+}
+
+.socials a{
+    width:42px;
+    height:42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:#122039;
+    color:white;
+}
+
+.socials a:hover{
+    background:#5b43ff;
+    transform:translateY(-3px);
+}
+
+.copyright{
+    margin-top:45px;
+    padding-top:22px;
+    border-top:1px solid #1c2a40;
+    text-align:center;
+    color:#8e98aa;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+    .nav-links{
+        position:absolute;
+        top:75px;
+        left:0;
+        width:100%;
+        background:white;
+        display:none;
+        flex-direction:column;
+        padding:25px;
+        box-shadow:0 15px 25px rgba(0,0,0,.1);
+    }
+
+    .nav-links.active{
+        display:flex;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        padding-top:130px;
+    }
+
+    .buttons{
+        justify-content:center;
+    }
+
+    .hero-logo{
+        width:330px;
+        height:330px;
+    }
+
+    .hero-logo img{
+        width:280px;
+        height:280px;
+    }
+
+    .feature-grid{
+        grid-template-columns:1fr;
+    }
+
+    .footer-content{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:500px){
+
+    nav{
+        padding:0 5%;
+    }
+
+    .logo span{
+        font-size:22px;
+    }
+
+    .hero{
+        padding-left:5%;
+        padding-right:5%;
+    }
+
+    .hero h1{
+        font-size:48px;
+    }
+
+    .hero-logo{
+        width:280px;
+        height:280px;
+    }
+
+    .hero-logo img{
+        width:240px;
+        height:240px;
+    }
+
+    .cta{
+        margin:50px 5%;
+    }
+
+    .cta h2{
+        font-size:32px;
+    }
+
+}
+
+</style>
 </head>
 
 <body>
@@ -540,7 +556,7 @@
 
     <a href="index.html" class="logo">
 
-        <!-- YOUR VOXA LOGO -->
+        <!-- VOXA LOGO -->
         <img src="voxa logo.png" alt="VOXA Logo">
 
         <span>VOXA</span>
@@ -584,7 +600,9 @@
 
         <h1>
             Connect.<br>
-            <span class="gradient-text">Chat. Share.</span>
+            <span class="gradient-text">
+                Chat. Share.
+            </span>
         </h1>
 
         <p>
@@ -610,7 +628,7 @@
     </div>
 
 
-    <!-- LOGO IMAGE -->
+    <!-- VOXA LOGO -->
 
     <div class="hero-logo">
 
@@ -717,7 +735,7 @@
 
             <div class="footer-logo">
 
-                <!-- VOXA LOGO IN FOOTER -->
+                <!-- VOXA LOGO -->
                 <img src="voxa logo.png" alt="VOXA Logo">
 
                 <span>VOXA</span>
@@ -819,19 +837,25 @@
 
 <script>
 
-function toggleMenu() {
+function toggleMenu(){
 
-    const nav = document.getElementById("navLinks");
+    const nav =
+        document.getElementById("navLinks");
 
     nav.classList.toggle("active");
 
 }
 
-document.querySelectorAll(".nav-links a").forEach(link => {
+
+document
+.querySelectorAll(".nav-links a")
+.forEach(link => {
 
     link.addEventListener("click", () => {
 
-        document.getElementById("navLinks").classList.remove("active");
+        document
+        .getElementById("navLinks")
+        .classList.remove("active");
 
     });
 
