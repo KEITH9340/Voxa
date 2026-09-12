@@ -1,629 +1,608 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta name="description" content="VOXA - Connect. Chat. Share.">
-<meta name="theme-color" content="#5865f2">
-
-<title>VOXA | Connect. Chat. Share.</title>
-
-<!-- VOXA DEFAULT BROWSER ICON -->
-<link rel="icon" type="image/png" href="logo.png">
-
-<!-- Optional Apple / Mobile Icon -->
-<link rel="apple-touch-icon" href="logo.png">
-
-<!-- Font Awesome -->
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    background:#f4f6fb;
-    color:#15182b;
-    overflow-x:hidden;
-}
-
-/* =========================
-   NAVIGATION
-========================= */
-
-.navbar{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:72px;
-    background:rgba(255,255,255,.94);
-    backdrop-filter:blur(15px);
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 7%;
-    z-index:1000;
-    border-bottom:1px solid #e6e8f0;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-size:25px;
-    font-weight:800;
-    color:#5865f2;
-    letter-spacing:2px;
-}
-
-.logo i{
-    font-size:28px;
-}
-
-.nav-links{
-    display:flex;
-    align-items:center;
-    gap:28px;
-    list-style:none;
-}
-
-.nav-links a{
-    text-decoration:none;
-    color:#353951;
-    font-size:14px;
-    font-weight:600;
-    transition:.3s;
-}
-
-.nav-links a:hover{
-    color:#5865f2;
-}
-
-.login-btn{
-    background:#5865f2 !important;
-    color:white !important;
-    padding:11px 21px;
-    border-radius:10px;
-}
-
-.login-btn:hover{
-    background:#4752c4 !important;
-    transform:translateY(-2px);
-}
-
-.menu-btn{
-    display:none;
-    font-size:24px;
-    cursor:pointer;
-    color:#30354d;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero{
-    min-height:100vh;
-    padding:150px 7% 80px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:60px;
-    background:
-        radial-gradient(circle at 80% 20%,rgba(88,101,242,.18),transparent 30%),
-        radial-gradient(circle at 20% 80%,rgba(124,92,255,.1),transparent 30%),
-        #f4f6fb;
-}
-
-.hero-content{
-    max-width:620px;
-}
-
-.badge{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:8px 14px;
-    border-radius:30px;
-    background:#e9ebff;
-    color:#5865f2;
-    font-size:12px;
-    font-weight:bold;
-    margin-bottom:20px;
-}
-
-.hero h1{
-    font-size:clamp(45px,7vw,78px);
-    line-height:1;
-    letter-spacing:-3px;
-    margin-bottom:22px;
-}
-
-.hero h1 span{
-    color:#5865f2;
-}
-
-.hero p{
-    color:#666d83;
-    font-size:18px;
-    line-height:1.7;
-    max-width:560px;
-    margin-bottom:30px;
-}
-
-.hero-buttons{
-    display:flex;
-    gap:14px;
-    flex-wrap:wrap;
-}
-
-.btn{
-    text-decoration:none;
-    padding:15px 24px;
-    border-radius:11px;
-    font-weight:bold;
-    display:inline-flex;
-    align-items:center;
-    gap:9px;
-    transition:.3s;
-}
-
-.primary{
-    background:#5865f2;
-    color:white;
-    box-shadow:0 10px 25px rgba(88,101,242,.25);
-}
-
-.primary:hover{
-    background:#4752c4;
-    transform:translateY(-3px);
-}
-
-.secondary{
-    background:white;
-    color:#30354d;
-    border:1px solid #dddfea;
-}
-
-.secondary:hover{
-    border-color:#5865f2;
-    color:#5865f2;
-}
-
-/* =========================
-   PHONE MOCKUP
-========================= */
-
-.hero-visual{
-    width:350px;
-    display:flex;
-    justify-content:center;
-}
-
-.phone{
-    width:285px;
-    height:560px;
-    background:#11162a;
-    border:8px solid #222844;
-    border-radius:38px;
-    padding:15px;
-    box-shadow:0 30px 70px rgba(26,32,61,.3);
-    transform:rotate(3deg);
-}
-
-.phone-top{
-    height:35px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    color:white;
-    font-size:11px;
-    padding:0 7px;
-}
-
-.chat-header{
-    background:#5865f2;
-    padding:14px;
-    border-radius:15px;
-    color:white;
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.avatar{
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    background:#fff;
-    color:#5865f2;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.chat-header small{
-    opacity:.8;
-}
-
-.chat-area{
-    padding:20px 5px;
-}
-
-.message{
-    max-width:80%;
-    padding:10px 13px;
-    border-radius:14px;
-    margin-bottom:13px;
-    font-size:11px;
-}
-
-.received{
-    background:#272d48;
-    color:white;
-}
-
-.sent{
-    background:#5865f2;
-    color:white;
-    margin-left:auto;
-}
-
-.typing{
-    color:#8f96b0;
-    font-size:11px;
-}
-
-/* =========================
-   FEATURES
-========================= */
-
-.section{
-    padding:90px 7%;
-}
-
-.section-title{
-    text-align:center;
-    max-width:650px;
-    margin:0 auto 50px;
-}
-
-.section-title h2{
-    font-size:40px;
-    margin-bottom:13px;
-}
-
-.section-title p{
-    color:#70778c;
-    line-height:1.6;
-}
-
-.features{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:22px;
-}
-
-.feature-card{
-    background:white;
-    padding:30px;
-    border-radius:18px;
-    border:1px solid #e5e7ef;
-    transition:.3s;
-}
-
-.feature-card:hover{
-    transform:translateY(-7px);
-    box-shadow:0 20px 40px rgba(30,35,65,.08);
-}
-
-.feature-icon{
-    width:52px;
-    height:52px;
-    border-radius:14px;
-    background:#e9ebff;
-    color:#5865f2;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:21px;
-    margin-bottom:20px;
-}
-
-.feature-card h3{
-    margin-bottom:10px;
-}
-
-.feature-card p{
-    color:#70778c;
-    line-height:1.6;
-    font-size:14px;
-}
-
-/* =========================
-   CTA
-========================= */
-
-.cta{
-    margin:30px 7% 90px;
-    padding:65px 30px;
-    text-align:center;
-    border-radius:25px;
-    background:linear-gradient(135deg,#5865f2,#756cf6);
-    color:white;
-    box-shadow:0 25px 50px rgba(88,101,242,.25);
-}
-
-.cta h2{
-    font-size:40px;
-    margin-bottom:15px;
-}
-
-.cta p{
-    opacity:.9;
-    margin-bottom:25px;
-}
-
-.cta .btn{
-    background:white;
-    color:#5865f2;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-    background:#10152a;
-    color:white;
-    padding:50px 7% 25px;
-}
-
-.footer-content{
-    display:flex;
-    justify-content:space-between;
-    gap:40px;
-    flex-wrap:wrap;
-}
-
-.footer-logo{
-    font-size:25px;
-    font-weight:bold;
-    color:#7d88ff;
-    margin-bottom:12px;
-}
-
-.footer-description{
-    color:#8e96af;
-    max-width:320px;
-    line-height:1.6;
-    font-size:13px;
-}
-
-.footer-links h4{
-    margin-bottom:15px;
-}
-
-.footer-links a{
-    display:block;
-    color:#8e96af;
-    text-decoration:none;
-    font-size:13px;
-    margin-bottom:10px;
-}
-
-.footer-links a:hover{
-    color:white;
-}
-
-.socials{
-    display:flex;
-    gap:10px;
-}
-
-.socials a{
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    background:#1c2340;
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-decoration:none;
-    transition:.3s;
-}
-
-.socials a:hover{
-    background:#5865f2;
-}
-
-.copyright{
-    border-top:1px solid #252b44;
-    margin-top:40px;
-    padding-top:20px;
-    text-align:center;
-    color:#777f99;
-    font-size:12px;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:850px){
-
-    .navbar{
-        padding:0 5%;
-    }
-
-    .menu-btn{
-        display:block;
-    }
-
-    .nav-links{
-        position:absolute;
-        top:72px;
-        left:0;
-        width:100%;
-        background:white;
-        flex-direction:column;
-        align-items:flex-start;
-        padding:25px 7%;
-        gap:20px;
-        display:none;
-        box-shadow:0 15px 30px rgba(0,0,0,.08);
-    }
-
-    .nav-links.active{
-        display:flex;
-    }
-
-    .hero{
-        flex-direction:column;
-        text-align:center;
-        padding-top:130px;
-    }
-
-    .hero-content{
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-    }
-
-    .hero p{
-        font-size:16px;
-    }
-
-    .hero-visual{
-        margin-top:20px;
-    }
-
-    .features{
-        grid-template-columns:1fr;
-    }
-
-    .section-title h2{
-        font-size:32px;
-    }
-
-    .cta h2{
-        font-size:30px;
-    }
-
-}
-
-@media(max-width:450px){
-
-    .hero h1{
-        font-size:48px;
-    }
-
-    .phone{
-        width:260px;
-        height:520px;
-    }
-
-    .hero-visual{
-        width:100%;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VOXA | Connect. Chat. Share.</title>
+
+    <!-- VOXA Browser Default Icon -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="shortcut icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f5f7ff;
+            color: #111936;
+            overflow-x: hidden;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            width: 100%;
+            height: 75px;
+            background: rgba(255,255,255,0.95);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            backdrop-filter: blur(15px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        /* YOUR UPLOADED VOXA IMAGE */
+        .logo img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .logo span {
+            font-size: 27px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #087cff, #673cff, #c52cff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #172044;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: #5b3cff;
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #405cff, #713cff);
+            color: white !important;
+            padding: 12px 24px;
+            border-radius: 30px;
+            box-shadow: 0 8px 20px rgba(77,65,255,.25);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 100vh;
+            padding: 140px 7% 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(0,204,255,.15), transparent 30%),
+                radial-gradient(circle at 90% 20%, rgba(126,53,255,.15), transparent 30%),
+                #f5f7ff;
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 9px 18px;
+            border-radius: 30px;
+            background: #e9edff;
+            color: #5540df;
+            font-weight: bold;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 6vw, 78px);
+            line-height: 1;
+            margin-bottom: 25px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(
+                90deg,
+                #08bfff,
+                #315cff,
+                #a62cff
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #626b86;
+            margin-bottom: 32px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 15px 28px;
+            border-radius: 35px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            transition: .3s;
+        }
+
+        .primary {
+            color: white;
+            background: linear-gradient(135deg,#087cff,#7634ff);
+            box-shadow: 0 12px 30px rgba(74,65,255,.25);
+        }
+
+        .secondary {
+            border: 2px solid #6b5cff;
+            color: #5845e9;
+            background: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+        }
+
+        /* ================= LOGO DISPLAY ================= */
+
+        .hero-logo {
+            width: 440px;
+            height: 440px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-logo::before {
+            content: "";
+            position: absolute;
+            width: 370px;
+            height: 370px;
+            background: linear-gradient(
+                135deg,
+                rgba(0,213,255,.2),
+                rgba(110,50,255,.2)
+            );
+            border-radius: 50%;
+            filter: blur(20px);
+            animation: glow 4s infinite alternate;
+        }
+
+        .hero-logo img {
+            width: 360px;
+            height: 360px;
+            object-fit: contain;
+            border-radius: 35px;
+            position: relative;
+            z-index: 2;
+            animation: float 4s ease-in-out infinite;
+            box-shadow: 0 30px 70px rgba(35,40,130,.2);
+        }
+
+        @keyframes float {
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                transform: scale(.9);
+                opacity: .6;
+            }
+
+            to {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        /* ================= FEATURES ================= */
+
+        .features {
+            padding: 90px 7%;
+            background: white;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            color: #707891;
+            max-width: 600px;
+            margin: auto;
+            line-height: 1.6;
+        }
+
+        .feature-grid {
+            margin-top: 55px;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 25px;
+        }
+
+        .feature-card {
+            padding: 35px 25px;
+            border-radius: 22px;
+            background: #f8f9ff;
+            border: 1px solid #e7e9f5;
+            transition: .3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(40,45,100,.12);
+        }
+
+        .feature-icon {
+            width: 65px;
+            height: 65px;
+            margin: 0 auto 20px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 25px;
+            background: linear-gradient(135deg,#08bfff,#6936ff);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #737b91;
+            line-height: 1.6;
+        }
+
+        /* ================= CTA ================= */
+
+        .cta {
+            margin: 80px 7%;
+            padding: 70px 30px;
+            text-align: center;
+            border-radius: 35px;
+            color: white;
+            background: linear-gradient(
+                135deg,
+                #087cff,
+                #563dff,
+                #b62bff
+            );
+            box-shadow: 0 25px 60px rgba(79,55,220,.25);
+        }
+
+        .cta h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            opacity: .9;
+            margin-bottom: 28px;
+        }
+
+        .cta .btn {
+            background: white;
+            color: #563dff;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #07111f;
+            color: white;
+            padding: 60px 7% 25px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .footer-logo img {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .footer-logo span {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        footer p {
+            color: #aeb7c9;
+            line-height: 1.7;
+        }
+
+        footer h3 {
+            margin-bottom: 18px;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin-bottom: 12px;
+        }
+
+        footer a {
+            color: #aeb7c9;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        .socials {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .socials a {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #122039;
+            color: white;
+        }
+
+        .socials a:hover {
+            background: #5b43ff;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            margin-top: 45px;
+            padding-top: 22px;
+            border-top: 1px solid #1c2a40;
+            text-align: center;
+            color: #8e98aa;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media(max-width:900px) {
+
+            .nav-links {
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: white;
+                display: none;
+                flex-direction: column;
+                padding: 25px;
+                box-shadow: 0 15px 25px rgba(0,0,0,.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 130px;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .hero-logo {
+                width: 330px;
+                height: 330px;
+            }
+
+            .hero-logo img {
+                width: 280px;
+                height: 280px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width:500px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            .logo span {
+                font-size: 22px;
+            }
+
+            .hero {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero-logo {
+                width: 280px;
+                height: 280px;
+            }
+
+            .hero-logo img {
+                width: 240px;
+                height: 240px;
+            }
+
+            .cta {
+                margin: 50px 5%;
+            }
+
+            .cta h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- =========================
-     NAVIGATION
-========================= -->
+<!-- ================= NAVIGATION ================= -->
 
-<nav class="navbar">
+<nav>
 
     <a href="index.html" class="logo">
-        <i class="fa-solid fa-comments"></i>
-        VOXA
+
+        <!-- YOUR VOXA LOGO -->
+        <img src="logo.png" alt="VOXA Logo">
+
+        <span>VOXA</span>
+
     </a>
 
-    <div class="menu-btn" id="menuBtn">
-        <i class="fa-solid fa-bars"></i>
+    <div class="nav-links" id="navLinks">
+
+        <a href="index.html">Home</a>
+
+        <a href="#features">Features</a>
+
+        <a href="contacts.html">Contacts</a>
+
+        <a href="about.html">About</a>
+
+        <a href="login.html" class="login-btn">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            Login
+        </a>
+
     </div>
 
-    <ul class="nav-links" id="navLinks">
-
-        <li>
-            <a href="index.html">Home</a>
-        </li>
-
-        <li>
-            <a href="#features">Features</a>
-        </li>
-
-        <li>
-            <a href="contacts.html">Contacts</a>
-        </li>
-
-        <li>
-            <a href="about.html">About</a>
-        </li>
-
-        <li>
-            <a href="login.html" class="login-btn">
-                <i class="fa-solid fa-lock"></i>
-                Login
-            </a>
-        </li>
-
-    </ul>
+    <div class="menu-btn" onclick="toggleMenu()">
+        <i class="fa-solid fa-bars"></i>
+    </div>
 
 </nav>
 
 
-<!-- =========================
-     HERO
-========================= -->
+<!-- ================= HERO ================= -->
 
 <section class="hero">
 
-    <div class="hero-content">
+    <div class="hero-text">
 
-        <div class="badge">
-            <i class="fa-solid fa-shield-halved"></i>
-            Secure • Fast • Connected
-        </div>
+        <span class="badge">
+            <i class="fa-solid fa-bolt"></i>
+            The future of communication
+        </span>
 
         <h1>
             Connect.<br>
-            <span>Chat.</span><br>
-            Share.
+            <span class="gradient-text">Chat. Share.</span>
         </h1>
 
         <p>
             Welcome to VOXA — a modern communication platform
-            designed to help people connect, chat and share
-            their world with ease.
+            designed to help you connect with people, chat instantly,
+            and share what matters.
         </p>
 
-        <div class="hero-buttons">
+        <div class="buttons">
 
             <a href="login.html" class="btn primary">
                 <i class="fa-solid fa-user-plus"></i>
                 Create Account
             </a>
 
-            <a href="login.html" class="btn secondary">
-                <i class="fa-solid fa-right-to-bracket"></i>
-                Login
+            <a href="contacts.html" class="btn secondary">
+                <i class="fa-solid fa-address-book"></i>
+                Explore Contacts
             </a>
 
         </div>
@@ -631,85 +610,32 @@ footer{
     </div>
 
 
-    <!-- PHONE PREVIEW -->
+    <!-- LOGO IMAGE -->
 
-    <div class="hero-visual">
+    <div class="hero-logo">
 
-        <div class="phone">
-
-            <div class="phone-top">
-                <span>9:41</span>
-
-                <span>
-                    <i class="fa-solid fa-wifi"></i>
-                    &nbsp;
-                    <i class="fa-solid fa-battery-full"></i>
-                </span>
-            </div>
-
-            <div class="chat-header">
-
-                <div class="avatar">
-                    <i class="fa-solid fa-user"></i>
-                </div>
-
-                <div>
-                    <strong>VOXA Chat</strong><br>
-                    <small>Online</small>
-                </div>
-
-            </div>
-
-            <div class="chat-area">
-
-                <div class="message received">
-                    Hey! 👋 Welcome to VOXA.
-                </div>
-
-                <div class="message sent">
-                    Nice! This looks amazing 🔥
-                </div>
-
-                <div class="message received">
-                    Let's connect and chat.
-                </div>
-
-                <div class="message sent">
-                    Absolutely! 🚀
-                </div>
-
-                <div class="typing">
-                    Someone is typing...
-                </div>
-
-            </div>
-
-        </div>
+        <img src="logo.png" alt="VOXA Logo">
 
     </div>
 
 </section>
 
 
-<!-- =========================
-     FEATURES
-========================= -->
+<!-- ================= FEATURES ================= -->
 
-<section class="section" id="features">
+<section class="features" id="features">
 
-    <div class="section-title">
+    <h2 class="section-title">
+        Everything You Need
+    </h2>
 
-        <h2>Everything you need to connect</h2>
-
-        <p>
-            VOXA brings communication tools together
-            in one simple and modern platform.
-        </p>
-
-    </div>
+    <p class="section-subtitle">
+        VOXA brings modern communication tools together
+        in one simple and beautiful platform.
+    </p>
 
 
-    <div class="features">
+    <div class="feature-grid">
 
         <div class="feature-card">
 
@@ -717,11 +643,11 @@ footer{
                 <i class="fa-solid fa-comments"></i>
             </div>
 
-            <h3>Real-Time Chat</h3>
+            <h3>Instant Chat</h3>
 
             <p>
-                Chat with your friends and contacts
-                through a clean and simple interface.
+                Send messages and stay connected with your
+                friends and contacts in real time.
             </p>
 
         </div>
@@ -730,14 +656,14 @@ footer{
         <div class="feature-card">
 
             <div class="feature-icon">
-                <i class="fa-solid fa-user-group"></i>
+                <i class="fa-solid fa-users"></i>
             </div>
 
             <h3>Contacts</h3>
 
             <p>
-                Keep your contacts organized and
-                easily find the people you want to talk to.
+                Organize your contacts and easily find
+                the people you want to communicate with.
             </p>
 
         </div>
@@ -746,62 +672,14 @@ footer{
         <div class="feature-card">
 
             <div class="feature-icon">
-                <i class="fa-solid fa-shield-halved"></i>
+                <i class="fa-solid fa-share-nodes"></i>
             </div>
 
-            <h3>Security</h3>
+            <h3>Share</h3>
 
             <p>
-                Build your account system with modern
-                authentication and security technologies.
-            </p>
-
-        </div>
-
-
-        <div class="feature-card">
-
-            <div class="feature-icon">
-                <i class="fa-solid fa-image"></i>
-            </div>
-
-            <h3>Share Media</h3>
-
-            <p>
-                Share photos, files and other content
-                with your conversations.
-            </p>
-
-        </div>
-
-
-        <div class="feature-card">
-
-            <div class="feature-icon">
-                <i class="fa-solid fa-bolt"></i>
-            </div>
-
-            <h3>Fast Experience</h3>
-
-            <p>
-                A lightweight interface designed to
-                feel quick and responsive.
-            </p>
-
-        </div>
-
-
-        <div class="feature-card">
-
-            <div class="feature-icon">
-                <i class="fa-solid fa-mobile-screen"></i>
-            </div>
-
-            <h3>Mobile Friendly</h3>
-
-            <p>
-                Use VOXA comfortably on phones,
-                tablets and desktop computers.
+                Share conversations and important moments
+                with the people who matter to you.
             </p>
 
         </div>
@@ -811,29 +689,25 @@ footer{
 </section>
 
 
-<!-- =========================
-     CALL TO ACTION
-========================= -->
+<!-- ================= CTA ================= -->
 
 <section class="cta">
 
     <h2>Ready to join VOXA?</h2>
 
     <p>
-        Create your account and start connecting.
+        Create your account and start connecting today.
     </p>
 
     <a href="login.html" class="btn">
-        <i class="fa-solid fa-user-plus"></i>
+        <i class="fa-solid fa-arrow-right"></i>
         Get Started
     </a>
 
 </section>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
@@ -842,72 +716,90 @@ footer{
         <div>
 
             <div class="footer-logo">
-                <i class="fa-solid fa-comments"></i>
-                VOXA
+
+                <!-- VOXA LOGO IN FOOTER -->
+                <img src="logo.png" alt="VOXA Logo">
+
+                <span>VOXA</span>
+
             </div>
 
-            <p class="footer-description">
+            <p>
                 Connect. Chat. Share.
-                A modern communication experience
-                built for the future.
+                A modern platform built for meaningful communication.
             </p>
 
-        </div>
+            <div class="socials">
 
+                <a href="#">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
 
-        <div class="footer-links">
+                <a href="#">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
 
-            <h4>Platform</h4>
+                <a href="#">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
 
-            <a href="index.html">Home</a>
+                <a href="#">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
 
-            <a href="#features">Features</a>
-
-            <a href="contacts.html">Contacts</a>
-
-            <a href="login.html">Login</a>
-
-        </div>
-
-
-        <div class="footer-links">
-
-            <h4>Account</h4>
-
-            <a href="login.html">Login</a>
-
-            <a href="login.html">Register</a>
-
-            <a href="forgot-password.html">
-                Forgot Password
-            </a>
+            </div>
 
         </div>
 
 
         <div>
 
-            <h4>Follow VOXA</h4>
+            <h3>Quick Links</h3>
 
-            <div class="socials">
+            <ul>
 
-                <a href="#" aria-label="Facebook">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </a>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
 
-                <a href="#" aria-label="X">
-                    <i class="fa-brands fa-x-twitter"></i>
-                </a>
+                <li>
+                    <a href="#features">Features</a>
+                </li>
 
-                <a href="#" aria-label="Instagram">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
+                <li>
+                    <a href="contacts.html">Contacts</a>
+                </li>
 
-                <a href="#" aria-label="YouTube">
-                    <i class="fa-brands fa-youtube"></i>
-                </a>
+                <li>
+                    <a href="about.html">About</a>
+                </li>
 
-            </div>
+            </ul>
+
+        </div>
+
+
+        <div>
+
+            <h3>Account</h3>
+
+            <ul>
+
+                <li>
+                    <a href="login.html">Login</a>
+                </li>
+
+                <li>
+                    <a href="login.html">Register</a>
+                </li>
+
+                <li>
+                    <a href="forgot-password.html">
+                        Forgot Password
+                    </a>
+                </li>
+
+            </ul>
 
         </div>
 
@@ -915,52 +807,31 @@ footer{
 
 
     <div class="copyright">
+
         © 2026 VOXA. All Rights Reserved.
+
     </div>
 
 </footer>
 
 
-<!-- =========================
-     JAVASCRIPT
-========================= -->
+<!-- ================= JAVASCRIPT ================= -->
 
 <script>
 
-const menuBtn = document.getElementById("menuBtn");
-const navLinks = document.getElementById("navLinks");
+function toggleMenu() {
 
-menuBtn.addEventListener("click", () => {
+    const nav = document.getElementById("navLinks");
 
-    navLinks.classList.toggle("active");
+    nav.classList.toggle("active");
 
-    const icon = menuBtn.querySelector("i");
-
-    if(navLinks.classList.contains("active")){
-
-        icon.classList.remove("fa-bars");
-        icon.classList.add("fa-xmark");
-
-    }else{
-
-        icon.classList.remove("fa-xmark");
-        icon.classList.add("fa-bars");
-
-    }
-
-});
-
+}
 
 document.querySelectorAll(".nav-links a").forEach(link => {
 
     link.addEventListener("click", () => {
 
-        navLinks.classList.remove("active");
-
-        const icon = menuBtn.querySelector("i");
-
-        icon.classList.remove("fa-xmark");
-        icon.classList.add("fa-bars");
+        document.getElementById("navLinks").classList.remove("active");
 
     });
 
