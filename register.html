@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VOXA | Create Account</title>
+
+    <!-- VOXA Browser Default Icon -->
+    <link rel="icon" type="image/png" href="voxa logo.png">
+    <link rel="shortcut icon" type="image/png" href="voxa logo.png">
+    <link rel="apple-touch-icon" href="voxa logo.png">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Cloudflare Turnstile -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+            async defer></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+
+            background:
+                radial-gradient(circle at top left,
+                    rgba(108,99,255,.20),
+                    transparent 35%),
+                radial-gradient(circle at bottom right,
+                    rgba(0,200,255,.12),
+                    transparent 35%),
+                #f5f7ff;
+
+            color: #16162b;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            height: 76px;
+            width: 100%;
+
+            background: rgba(255,255,255,.90);
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid rgba(0,0,0,.06);
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            text-decoration: none;
+            color: #16162b;
+
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .logo img {
+            width: 43px;
+            height: 43px;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #55566f;
+            font-size: 15px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .nav-links a:hover {
+            color: #6c63ff;
+        }
+
+        .login-nav {
+            padding: 11px 20px;
+            background: #6c63ff;
+            color: white !important;
+            border-radius: 12px;
+
+            box-shadow:
+                0 8px 20px rgba(108,99,255,.25);
+        }
+
+        .login-nav:hover {
+            background: #584fff !important;
+            transform: translateY(-2px);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        /* ================= REGISTER SECTION ================= */
+
+        .register-section {
+            min-height: 100vh;
+
+            padding: 125px 20px 50px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .register-wrapper {
+            width: 100%;
+            max-width: 1050px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            background: rgba(255,255,255,.94);
+
+            border-radius: 30px;
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 70px rgba(35,35,75,.15);
+
+            border: 1px solid rgba(255,255,255,.8);
+        }
+
+        /* ================= LEFT SIDE ================= */
+
+        .register-info {
+            padding: 55px 50px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6c63ff,
+                    #5549ed,
+                    #3c35b8
+                );
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .big-logo {
+            width: 105px;
+            height: 105px;
+
+            object-fit: contain;
+
+            background: rgba(255,255,255,.12);
+
+            padding: 12px;
+            border-radius: 28px;
+
+            margin-bottom: 25px;
+        }
+
+        .register-info h1 {
+            font-size: 43px;
+            line-height: 1.1;
+            margin-bottom: 18px;
+        }
+
+        .register-info p {
+            color: rgba(255,255,255,.87);
+            line-height: 1.7;
+            max-width: 430px;
+        }
+
+        .benefits {
+            margin-top: 30px;
+
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .benefit {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            font-size: 14px;
+        }
+
+        .benefit i {
+            width: 35px;
+            height: 35px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,.15);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ================= FORM ================= */
+
+        .register-form-container {
+            padding: 45px 50px;
+        }
+
+        .form-heading {
+            margin-bottom: 25px;
+        }
+
+        .form-heading h2 {
+            font-size: 31px;
+            margin-bottom: 8px;
+        }
+
+        .form-heading p {
+            color: #77788e;
+            font-size: 14px;
+        }
+
+        .input-group {
+            margin-bottom: 17px;
+        }
+
+        .input-group label {
+            display: block;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            margin-bottom: 8px;
+        }
+
+        .input-box {
+            position: relative;
+        }
+
+        .input-box > i:first-child {
+            position: absolute;
+
+            left: 15px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #8889a0;
+        }
+
+        .input-box input {
+            width: 100%;
+            height: 50px;
+
+            border: 1px solid #ddddea;
+            border-radius: 13px;
+
+            padding: 0 45px;
+
+            outline: none;
+
+            font-size: 15px;
+
+            background: #fafaff;
+
+            transition: .3s;
+        }
+
+        .input-box input:focus {
+            border-color: #6c63ff;
+
+            box-shadow:
+                0 0 0 4px rgba(108,99,255,.10);
+
+            background: white;
+        }
+
+        .password-toggle {
+            left: auto !important;
+            right: 15px;
+
+            cursor: pointer;
+        }
+
+        /* ================= PASSWORD STRENGTH ================= */
+
+        .strength-container {
+            margin-top: 8px;
+        }
+
+        .strength-bar {
+            height: 5px;
+
+            background: #e8e8f2;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+        }
+
+        .strength-fill {
+            height: 100%;
+            width: 0%;
+
+            transition: .3s;
+        }
+
+        .strength-text {
+            margin-top: 5px;
+
+            font-size: 11px;
+            color: #8889a0;
+        }
+
+        /* ================= TERMS ================= */
+
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+
+            font-size: 12px;
+            color: #77788e;
+
+            margin: 15px 0;
+        }
+
+        .terms input {
+            margin-top: 2px;
+            accent-color: #6c63ff;
+        }
+
+        .terms a {
+            color: #6c63ff;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* ================= CAPTCHA ================= */
+
+        .captcha-box {
+            margin: 18px 0;
+
+            min-height: 65px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ================= BUTTON ================= */
+
+        .register-btn {
+            width: 100%;
+            height: 53px;
+
+            border: none;
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6c63ff,
+                    #5148e8
+                );
+
+            color: white;
+
+            font-size: 16px;
+            font-weight: 800;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 12px 25px rgba(108,99,255,.25);
+
+            transition: .3s;
+        }
+
+        .register-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 15px 30px rgba(108,99,255,.35);
+        }
+
+        .register-btn:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ================= MESSAGE ================= */
+
+        .message {
+            display: none;
+
+            padding: 12px 15px;
+
+            border-radius: 10px;
+
+            margin-bottom: 17px;
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .message.error {
+            display: block;
+
+            background: #fff0f0;
+            color: #c62828;
+
+            border: 1px solid #ffd0d0;
+        }
+
+        .message.success {
+            display: block;
+
+            background: #effff4;
+            color: #16803c;
+
+            border: 1px solid #c9f2d6;
+        }
+
+        /* ================= LOGIN LINK ================= */
+
+        .login-text {
+            text-align: center;
+
+            margin-top: 22px;
+
+            color: #77788e;
+
+            font-size: 14px;
+        }
+
+        .login-text a {
+            color: #6c63ff;
+
+            font-weight: 800;
+
+            text-decoration: none;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #15152b;
+
+            color: white;
+
+            padding: 25px 7%;
+
+            text-align: center;
+
+            font-size: 13px;
+        }
+
+        footer img {
+            width: 35px;
+            height: 35px;
+
+            object-fit: contain;
+
+            vertical-align: middle;
+
+            margin-right: 7px;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media(max-width: 850px) {
+
+            .nav-links {
+                position: absolute;
+
+                top: 76px;
+                right: 0;
+
+                width: 100%;
+
+                background: white;
+
+                display: none;
+
+                flex-direction: column;
+
+                padding: 25px;
+
+                box-shadow:
+                    0 15px 30px rgba(0,0,0,.08);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .register-wrapper {
+                grid-template-columns: 1fr;
+
+                max-width: 600px;
+            }
+
+            .register-info {
+                display: none;
+            }
+
+            .register-form-container {
+                padding: 45px 30px;
+            }
+        }
+
+        @media(max-width: 500px) {
+
+            nav {
+                padding: 0 20px;
+            }
+
+            .register-section {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .register-form-container {
+                padding: 35px 22px;
+            }
+
+            .form-heading h2 {
+                font-size: 27px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+    <a href="index.html" class="logo">
+
+        <img src="voxa logo.png" alt="VOXA Logo">
+
+        <span>VOXA</span>
+
+    </a>
+
+
+    <div class="nav-links" id="navLinks">
+
+        <a href="index.html">Home</a>
+
+        <a href="index.html#features">Features</a>
+
+        <a href="contacts.html">Contacts</a>
+
+        <a href="about.html">About</a>
+
+        <a href="login.html" class="login-nav">
+            Login
+        </a>
+
+    </div>
+
+
+    <div class="menu-toggle" id="menuToggle">
+
+        <i class="fas fa-bars"></i>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= REGISTER ================= -->
+
+<section class="register-section">
+
+    <div class="register-wrapper">
+
+        <!-- LEFT INFORMATION -->
+
+        <div class="register-info">
+
+            <img
+                src="voxa logo.png"
+                alt="VOXA Logo"
+                class="big-logo"
+            >
+
+            <h1>
+                Join VOXA today.
+            </h1>
+
+            <p>
+                Create your VOXA account and start connecting,
+                chatting and sharing with the people who matter.
+            </p>
+
+
+            <div class="benefits">
+
+                <div class="benefit">
+
+                    <i class="fas fa-comments"></i>
+
+                    <span>
+                        Connect and chat with friends
+                    </span>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <i class="fas fa-user-group"></i>
+
+                    <span>
+                        Build your contacts
+                    </span>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <i class="fas fa-shield-halved"></i>
+
+                    <span>
+                        Protected account authentication
+                    </span>
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <i class="fas fa-robot"></i>
+
+                    <span>
+                        Cloudflare bot protection
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- REGISTER FORM -->
+
+        <div class="register-form-container">
+
+            <div class="form-heading">
+
+                <h2>
+                    Create account
+                </h2>
+
+                <p>
+                    Create your secure VOXA account.
+                </p>
+
+            </div>
+
+
+            <div
+                id="message"
+                class="message">
+            </div>
+
+
+            <form id="registerForm">
+
+                <!-- FULL NAME -->
+
+                <div class="input-group">
+
+                    <label for="fullName">
+                        Full Name
+                    </label>
+
+                    <div class="input-box">
+
+                        <i class="fas fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            maxlength="80"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="input-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <div class="input-box">
+
+                        <i class="fas fa-envelope"></i>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                            maxlength="254"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="input-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-box">
+
+                        <i class="fas fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Create a strong password"
+                            autocomplete="new-password"
+                            maxlength="128"
+                            required>
+
+                        <i
+                            class="fas fa-eye password-toggle"
+                            id="togglePassword">
+                        </i>
+
+                    </div>
+
+
+                    <div class="strength-container">
+
+                        <div class="strength-bar">
+
+                            <div
+                                class="strength-fill"
+                                id="strengthFill">
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="strength-text"
+                            id="strengthText">
+                            Password strength
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <div class="input-group">
+
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <div class="input-box">
+
+                        <i class="fas fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            placeholder="Confirm your password"
+                            autocomplete="new-password"
+                            maxlength="128"
+                            required>
+
+                        <i
+                            class="fas fa-eye password-toggle"
+                            id="toggleConfirm">
+                        </i>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TERMS -->
+
+                <label class="terms">
+
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        required>
+
+                    <span>
+                        I agree to the
+                        <a href="#">
+                            VOXA Terms
+                        </a>
+                        and
+                        <a href="#">
+                            Privacy Policy
+                        </a>.
+                    </span>
+
+                </label>
+
+
+                <!-- CLOUDFLARE TURNSTILE -->
+
+                <div class="captcha-box">
+
+                    <!--
+                    Replace this with your real
+                    Cloudflare Turnstile Site Key.
+                    -->
+
+                    <div
+                        class="cf-turnstile"
+                        data-sitekey="YOUR_CLOUDFLARE_TURNSTILE_SITE_KEY"
+                        data-theme="light">
+                    </div>
+
+                </div>
+
+
+                <!-- REGISTER BUTTON -->
+
+                <button
+                    type="submit"
+                    class="register-btn"
+                    id="registerButton">
+
+                    <i class="fas fa-user-plus"></i>
+
+                    Create Account
+
+                </button>
+
+            </form>
+
+
+            <div class="login-text">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Sign in
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <img
+        src="voxa logo.png"
+        alt="VOXA Logo">
+
+    © 2026 VOXA — Connect. Chat. Share.
+
+</footer>
+
+
+<script>
+
+    /* ================= MOBILE MENU ================= */
+
+    const menuToggle =
+        document.getElementById("menuToggle");
+
+    const navLinks =
+        document.getElementById("navLinks");
+
+
+    menuToggle.addEventListener("click", () => {
+
+        navLinks.classList.toggle("active");
+
+    });
+
+
+    /* ================= PASSWORD SHOW/HIDE ================= */
+
+    const password =
+        document.getElementById("password");
+
+    const confirmPassword =
+        document.getElementById("confirmPassword");
+
+
+    document
+        .getElementById("togglePassword")
+        .addEventListener("click", function() {
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+                this.classList.remove("fa-eye");
+                this.classList.add("fa-eye-slash");
+
+            } else {
+
+                password.type = "password";
+
+                this.classList.remove("fa-eye-slash");
+                this.classList.add("fa-eye");
+
+            }
+
+        });
+
+
+    document
+        .getElementById("toggleConfirm")
+        .addEventListener("click", function() {
+
+            if (confirmPassword.type === "password") {
+
+                confirmPassword.type = "text";
+
+                this.classList.remove("fa-eye");
+                this.classList.add("fa-eye-slash");
+
+            } else {
+
+                confirmPassword.type = "password";
+
+                this.classList.remove("fa-eye-slash");
+                this.classList.add("fa-eye");
+
+            }
+
+        });
+
+
+    /* ================= PASSWORD STRENGTH ================= */
+
+    const strengthFill =
+        document.getElementById("strengthFill");
+
+    const strengthText =
+        document.getElementById("strengthText");
+
+
+    password.addEventListener("input", () => {
+
+        const value = password.value;
+
+        let score = 0;
+
+
+        if (value.length >= 8)
+            score++;
+
+        if (/[A-Z]/.test(value))
+            score++;
+
+        if (/[a-z]/.test(value))
+            score++;
+
+        if (/[0-9]/.test(value))
+            score++;
+
+        if (/[^A-Za-z0-9]/.test(value))
+            score++;
+
+
+        const percentage =
+            (score / 5) * 100;
+
+
+        strengthFill.style.width =
+            percentage + "%";
+
+
+        if (score <= 1) {
+
+            strengthText.textContent =
+                "Very weak password";
+
+        } else if (score === 2) {
+
+            strengthText.textContent =
+                "Weak password";
+
+        } else if (score === 3) {
+
+            strengthText.textContent =
+                "Medium password";
+
+        } else if (score === 4) {
+
+            strengthText.textContent =
+                "Strong password";
+
+        } else {
+
+            strengthText.textContent =
+                "Very strong password";
+
+        }
+
+    });
+
+
+    /* ================= FORM ================= */
+
+    const registerForm =
+        document.getElementById("registerForm");
+
+    const registerButton =
+        document.getElementById("registerButton");
+
+    const message =
+        document.getElementById("message");
+
+
+    registerForm.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        const fullName =
+            document.getElementById("fullName")
+            .value.trim();
+
+        const email =
+            document.getElementById("email")
+            .value.trim();
+
+        const passwordValue =
+            password.value;
+
+        const confirmValue =
+            confirmPassword.value;
+
+        const terms =
+            document.getElementById("terms").checked;
+
+
+        message.className = "message";
+
+        message.textContent = "";
+
+
+        /* NAME */
+
+        if (fullName.length < 2) {
+
+            showError(
+                "Please enter your full name."
+            );
+
+            return;
+
+        }
+
+
+        /* EMAIL */
+
+        if (!email) {
+
+            showError(
+                "Please enter your email address."
+            );
+
+            return;
+
+        }
+
+
+        /* PASSWORD */
+
+        if (passwordValue.length < 8) {
+
+            showError(
+                "Your password must contain at least 8 characters."
+            );
+
+            return;
+
+        }
+
+
+        /* PASSWORD CONFIRMATION */
+
+        if (passwordValue !== confirmValue) {
+
+            showError(
+                "The passwords do not match."
+            );
+
+            return;
+
+        }
+
+
+        /* TERMS */
+
+        if (!terms) {
+
+            showError(
+                "Please accept the VOXA Terms and Privacy Policy."
+            );
+
+            return;
+
+        }
+
+
+        /* TURNSTILE */
+
+        const turnstileResponse =
+            document.querySelector(
+                '[name="cf-turnstile-response"]'
+            );
+
+
+        if (!turnstileResponse ||
+            !turnstileResponse.value) {
+
+            showError(
+                "Please complete the security verification."
+            );
+
+            return;
+
+        }
+
+
+        /* ============================
+           SECURE REGISTRATION
+           ============================
+
+           Send the following data to
+           your secure backend:
+
+           fullName
+           email
+           password
+           turnstile token
+
+           The backend should:
+
+           1. Verify Turnstile
+           2. Create the account
+           3. Hash/manage passwords through
+              your authentication provider
+           4. Never store plaintext passwords
+           */
+
+
+        registerButton.disabled = true;
+
+        registerButton.innerHTML =
+            '<i class="fas fa-spinner fa-spin"></i> Creating account...';
+
+
+        /*
+        DEMO RESPONSE
+
+        Replace this section with your
+        Supabase Auth registration later.
+        */
+
+        setTimeout(() => {
+
+            showSuccess(
+                "Security verification passed. Connect Supabase Auth to finish registration."
+            );
+
+
+            registerButton.disabled = false;
+
+            registerButton.innerHTML =
+                '<i class="fas fa-user-plus"></i> Create Account';
+
+
+        }, 1200);
+
+    });
+
+
+    /* ================= MESSAGE FUNCTIONS ================= */
+
+    function showError(text) {
+
+        message.textContent = text;
+
+        message.className =
+            "message error";
+
+    }
+
+
+    function showSuccess(text) {
+
+        message.textContent = text;
+
+        message.className =
+            "message success";
+
+    }
+
+</script>
+
+</body>
+</html>
