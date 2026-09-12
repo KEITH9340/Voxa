@@ -1,10 +1,16 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="VOXA - Connect. Chat. Share.">
+<meta name="theme-color" content="#5865f2">
+
 <title>VOXA | Connect. Chat. Share.</title>
 
+<!-- Font Awesome -->
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
@@ -13,264 +19,519 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     margin:0;
     padding:0;
     box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-    font-family:Arial, sans-serif;
     background:#f4f6fb;
-    height:100vh;
-    overflow:hidden;
-    color:#202124;
+    color:#15182b;
+    overflow-x:hidden;
 }
 
-.app{
+/* =========================
+   NAVIGATION
+========================= */
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:72px;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(15px);
     display:flex;
-    height:100vh;
-}
-
-/* SIDEBAR */
-.sidebar{
-    width:270px;
-    background:#fff;
-    border-right:1px solid #e5e7eb;
-    padding:25px 18px;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    z-index:1000;
+    border-bottom:1px solid #e6e8f0;
 }
 
 .logo{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:10px;
     font-size:25px;
-    font-weight:bold;
-    color:#6c63ff;
-    margin-bottom:35px;
+    font-weight:800;
+    color:#5865f2;
+    letter-spacing:2px;
 }
 
-.logo-icon{
-    width:45px;
-    height:45px;
-    background:#6c63ff;
-    color:white;
-    border-radius:14px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+.logo i{
+    font-size:28px;
 }
 
-nav{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-}
-
-.nav-item{
-    border:none;
-    background:none;
-    padding:14px;
-    border-radius:12px;
+.nav-links{
     display:flex;
     align-items:center;
-    gap:14px;
-    color:#666;
-    cursor:pointer;
-    font-size:15px;
-    text-align:left;
+    gap:28px;
+    list-style:none;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#353951;
+    font-size:14px;
+    font-weight:600;
     transition:.3s;
 }
 
-.nav-item:hover{
-    background:#f0efff;
-    color:#6c63ff;
+.nav-links a:hover{
+    color:#5865f2;
 }
 
-.nav-item.active{
-    background:#6c63ff;
-    color:white;
+.login-btn{
+    background:#5865f2 !important;
+    color:white !important;
+    padding:11px 21px;
+    border-radius:10px;
 }
 
-/* CHAT AREA */
-.chat-area{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    background:#fafbff;
+.login-btn:hover{
+    background:#4752c4 !important;
+    transform:translateY(-2px);
 }
 
-.chat-header{
-    height:75px;
-    background:white;
-    border-bottom:1px solid #e5e7eb;
+.menu-btn{
+    display:none;
+    font-size:24px;
+    cursor:pointer;
+    color:#30354d;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:100vh;
+    padding:150px 7% 80px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 25px;
+    gap:60px;
+    background:
+        radial-gradient(circle at 80% 20%,rgba(88,101,242,.18),transparent 30%),
+        radial-gradient(circle at 20% 80%,rgba(124,92,255,.1),transparent 30%),
+        #f4f6fb;
 }
 
-.user-info{
-    display:flex;
+.hero-content{
+    max-width:620px;
+}
+
+.badge{
+    display:inline-flex;
     align-items:center;
-    gap:12px;
+    gap:8px;
+    padding:8px 14px;
+    border-radius:30px;
+    background:#e9ebff;
+    color:#5865f2;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:20px;
 }
 
-.avatar{
-    width:45px;
-    height:45px;
-    border-radius:50%;
-    background:linear-gradient(135deg,#6c63ff,#8e85ff);
+.hero h1{
+    font-size:clamp(45px,7vw,78px);
+    line-height:1;
+    letter-spacing:-3px;
+    margin-bottom:22px;
+}
+
+.hero h1 span{
+    color:#5865f2;
+}
+
+.hero p{
+    color:#666d83;
+    font-size:18px;
+    line-height:1.7;
+    max-width:560px;
+    margin-bottom:30px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    text-decoration:none;
+    padding:15px 24px;
+    border-radius:11px;
+    font-weight:bold;
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    transition:.3s;
+}
+
+.primary{
+    background:#5865f2;
     color:white;
+    box-shadow:0 10px 25px rgba(88,101,242,.25);
+}
+
+.primary:hover{
+    background:#4752c4;
+    transform:translateY(-3px);
+}
+
+.secondary{
+    background:white;
+    color:#30354d;
+    border:1px solid #dddfea;
+}
+
+.secondary:hover{
+    border-color:#5865f2;
+    color:#5865f2;
+}
+
+/* =========================
+   PHONE MOCKUP
+========================= */
+
+.hero-visual{
+    width:350px;
     display:flex;
     justify-content:center;
+}
+
+.phone{
+    width:285px;
+    height:560px;
+    background:#11162a;
+    border:8px solid #222844;
+    border-radius:38px;
+    padding:15px;
+    box-shadow:0 30px 70px rgba(26,32,61,.3);
+    transform:rotate(3deg);
+}
+
+.phone-top{
+    height:35px;
+    display:flex;
+    justify-content:space-between;
     align-items:center;
-    font-weight:bold;
-}
-
-.user-name{
-    font-weight:bold;
-}
-
-.status{
-    color:#22c55e;
-    font-size:12px;
-    margin-top:4px;
-}
-
-.header-actions{
-    display:flex;
-    gap:8px;
-}
-
-.icon-btn{
-    width:40px;
-    height:40px;
-    border:none;
-    border-radius:50%;
-    background:#f3f4f6;
-    cursor:pointer;
-    color:#555;
-}
-
-.icon-btn:hover{
-    background:#6c63ff;
     color:white;
+    font-size:11px;
+    padding:0 7px;
 }
 
-/* MESSAGES */
-.messages{
-    flex:1;
-    padding:25px;
-    overflow-y:auto;
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-}
-
-.message{
-    max-width:65%;
-    padding:13px 16px;
-    border-radius:17px;
-    font-size:14px;
-    line-height:1.5;
-}
-
-.received{
-    align-self:flex-start;
-    background:#eef0f4;
-    border-bottom-left-radius:4px;
-}
-
-.sent{
-    align-self:flex-end;
-    background:#6c63ff;
+.chat-header{
+    background:#5865f2;
+    padding:14px;
+    border-radius:15px;
     color:white;
-    border-bottom-right-radius:4px;
-}
-
-.message-time{
-    display:block;
-    font-size:10px;
-    opacity:.65;
-    text-align:right;
-    margin-top:5px;
-}
-
-/* INPUT */
-.message-input{
-    min-height:75px;
-    padding:14px 22px;
-    background:white;
-    border-top:1px solid #e5e7eb;
     display:flex;
     align-items:center;
     gap:10px;
 }
 
-.message-input input{
-    flex:1;
-    height:48px;
-    border:none;
-    outline:none;
-    background:#f3f4f6;
-    border-radius:25px;
-    padding:0 20px;
+.avatar{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:#fff;
+    color:#5865f2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.chat-header small{
+    opacity:.8;
+}
+
+.chat-area{
+    padding:20px 5px;
+}
+
+.message{
+    max-width:80%;
+    padding:10px 13px;
+    border-radius:14px;
+    margin-bottom:13px;
+    font-size:11px;
+}
+
+.received{
+    background:#272d48;
+    color:white;
+}
+
+.sent{
+    background:#5865f2;
+    color:white;
+    margin-left:auto;
+}
+
+.typing{
+    color:#8f96b0;
+    font-size:11px;
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.section{
+    padding:90px 7%;
+}
+
+.section-title{
+    text-align:center;
+    max-width:650px;
+    margin:0 auto 50px;
+}
+
+.section-title h2{
+    font-size:40px;
+    margin-bottom:13px;
+}
+
+.section-title p{
+    color:#70778c;
+    line-height:1.6;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.feature-card{
+    background:white;
+    padding:30px;
+    border-radius:18px;
+    border:1px solid #e5e7ef;
+    transition:.3s;
+}
+
+.feature-card:hover{
+    transform:translateY(-7px);
+    box-shadow:0 20px 40px rgba(30,35,65,.08);
+}
+
+.feature-icon{
+    width:52px;
+    height:52px;
+    border-radius:14px;
+    background:#e9ebff;
+    color:#5865f2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
+    margin-bottom:20px;
+}
+
+.feature-card h3{
+    margin-bottom:10px;
+}
+
+.feature-card p{
+    color:#70778c;
+    line-height:1.6;
     font-size:14px;
 }
 
-.send-btn{
-    width:48px;
-    height:48px;
-    border:none;
-    border-radius:50%;
-    background:#6c63ff;
+/* =========================
+   CTA
+========================= */
+
+.cta{
+    margin:30px 7% 90px;
+    padding:65px 30px;
+    text-align:center;
+    border-radius:25px;
+    background:linear-gradient(135deg,#5865f2,#756cf6);
     color:white;
-    cursor:pointer;
+    box-shadow:0 25px 50px rgba(88,101,242,.25);
 }
 
-.send-btn:hover{
-    background:#5148e5;
-    transform:scale(1.05);
+.cta h2{
+    font-size:40px;
+    margin-bottom:15px;
 }
 
-/* MOBILE */
-@media(max-width:768px){
+.cta p{
+    opacity:.9;
+    margin-bottom:25px;
+}
 
-    .sidebar{
-        width:70px;
-        padding:20px 8px;
+.cta .btn{
+    background:white;
+    color:#5865f2;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#10152a;
+    color:white;
+    padding:50px 7% 25px;
+}
+
+.footer-content{
+    display:flex;
+    justify-content:space-between;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+.footer-logo{
+    font-size:25px;
+    font-weight:bold;
+    color:#7d88ff;
+    margin-bottom:12px;
+}
+
+.footer-description{
+    color:#8e96af;
+    max-width:320px;
+    line-height:1.6;
+    font-size:13px;
+}
+
+.footer-links h4{
+    margin-bottom:15px;
+}
+
+.footer-links a{
+    display:block;
+    color:#8e96af;
+    text-decoration:none;
+    font-size:13px;
+    margin-bottom:10px;
+}
+
+.footer-links a:hover{
+    color:white;
+}
+
+.socials{
+    display:flex;
+    gap:10px;
+}
+
+.socials a{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:#1c2340;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.socials a:hover{
+    background:#5865f2;
+}
+
+.copyright{
+    border-top:1px solid #252b44;
+    margin-top:40px;
+    padding-top:20px;
+    text-align:center;
+    color:#777f99;
+    font-size:12px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:850px){
+
+    .navbar{
+        padding:0 5%;
     }
 
-    .logo span{
+    .menu-btn{
+        display:block;
+    }
+
+    .nav-links{
+        position:absolute;
+        top:72px;
+        left:0;
+        width:100%;
+        background:white;
+        flex-direction:column;
+        align-items:flex-start;
+        padding:25px 7%;
+        gap:20px;
         display:none;
+        box-shadow:0 15px 30px rgba(0,0,0,.08);
     }
 
-    .logo{
-        justify-content:center;
+    .nav-links.active{
+        display:flex;
     }
 
-    .nav-item{
-        justify-content:center;
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        padding-top:130px;
     }
 
-    .nav-item span{
-        display:none;
+    .hero-content{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
     }
 
-    .message{
-        max-width:80%;
+    .hero p{
+        font-size:16px;
     }
+
+    .hero-visual{
+        margin-top:20px;
+    }
+
+    .features{
+        grid-template-columns:1fr;
+    }
+
+    .section-title h2{
+        font-size:32px;
+    }
+
+    .cta h2{
+        font-size:30px;
+    }
+
 }
 
-@media(max-width:480px){
+@media(max-width:450px){
 
-    .sidebar{
-        width:60px;
+    .hero h1{
+        font-size:48px;
     }
 
-    .messages{
-        padding:15px;
+    .phone{
+        width:260px;
+        height:520px;
     }
 
-    .message{
-        max-width:88%;
+    .hero-visual{
+        width:100%;
     }
 }
 </style>
@@ -278,189 +539,434 @@ nav{
 
 <body>
 
-<div class="app">
+<!-- =========================
+     NAVIGATION
+========================= -->
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
+<nav class="navbar">
 
-        <div class="logo">
-            <div class="logo-icon">
-                <i class="fa-solid fa-comment"></i>
-            </div>
-            <span>VOXA</span>
+    <a href="index.html" class="logo">
+        <i class="fa-solid fa-comments"></i>
+        VOXA
+    </a>
+
+    <div class="menu-btn" id="menuBtn">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+
+        <li>
+            <a href="index.html">Home</a>
+        </li>
+
+        <li>
+            <a href="#features">Features</a>
+        </li>
+
+        <li>
+            <a href="contacts.html">Contacts</a>
+        </li>
+
+        <li>
+            <a href="about.html">About</a>
+        </li>
+
+        <!-- LOGIN LINK -->
+        <li>
+            <a href="login.html" class="login-btn">
+                <i class="fa-solid fa-lock"></i>
+                Login
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            <i class="fa-solid fa-shield-halved"></i>
+            Secure • Fast • Connected
         </div>
 
-        <nav>
+        <h1>
+            Connect.<br>
+            <span>Chat.</span><br>
+            Share.
+        </h1>
 
-            <!-- CHATS -->
-            <button
-                class="nav-item active"
-                onclick="window.location.href='index.html'">
+        <p>
+            Welcome to VOXA — a modern communication platform
+            designed to help people connect, chat and share
+            their world with ease.
+        </p>
 
-                <i class="fa-solid fa-comments"></i>
-                <span>Chats</span>
+        <div class="hero-buttons">
 
-            </button>
+            <!-- REGISTER LINK -->
+            <a href="login.html" class="btn primary">
+                <i class="fa-solid fa-user-plus"></i>
+                Create Account
+            </a>
 
+            <!-- LOGIN LINK -->
+            <a href="login.html" class="btn secondary">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                Login
+            </a>
 
-            <!-- CONTACTS -->
-            <button
-                class="nav-item"
-                onclick="window.location.href='contacts.html'">
+        </div>
 
-                <i class="fa-solid fa-user-group"></i>
-                <span>Contacts</span>
-
-            </button>
-
-
-            <!-- CALLS -->
-            <button class="nav-item">
-
-                <i class="fa-solid fa-phone"></i>
-                <span>Calls</span>
-
-            </button>
+    </div>
 
 
-            <!-- NOTIFICATIONS -->
-            <button class="nav-item">
+    <!-- PHONE PREVIEW -->
 
-                <i class="fa-solid fa-bell"></i>
-                <span>Notifications</span>
+    <div class="hero-visual">
 
-            </button>
+        <div class="phone">
 
+            <div class="phone-top">
+                <span>9:41</span>
+                <span>
+                    <i class="fa-solid fa-wifi"></i>
+                    &nbsp;
+                    <i class="fa-solid fa-battery-full"></i>
+                </span>
+            </div>
 
-            <!-- SETTINGS -->
-            <button class="nav-item">
-
-                <i class="fa-solid fa-gear"></i>
-                <span>Settings</span>
-
-            </button>
-
-        </nav>
-
-    </aside>
-
-
-    <!-- CHAT -->
-    <main class="chat-area">
-
-        <header class="chat-header">
-
-            <div class="user-info">
+            <div class="chat-header">
 
                 <div class="avatar">
-                    JD
+                    <i class="fa-solid fa-user"></i>
                 </div>
 
                 <div>
-
-                    <div class="user-name">
-                        John Doe
-                    </div>
-
-                    <div class="status">
-                        ● Online
-                    </div>
-
+                    <strong>VOXA Chat</strong><br>
+                    <small>Online</small>
                 </div>
 
             </div>
 
+            <div class="chat-area">
 
-            <div class="header-actions">
+                <div class="message received">
+                    Hey! 👋 Welcome to VOXA.
+                </div>
 
-                <button class="icon-btn">
-                    <i class="fa-solid fa-phone"></i>
-                </button>
+                <div class="message sent">
+                    Nice! This looks amazing 🔥
+                </div>
 
-                <button class="icon-btn">
-                    <i class="fa-solid fa-video"></i>
-                </button>
+                <div class="message received">
+                    Let's connect and chat.
+                </div>
 
-                <button class="icon-btn">
-                    <i class="fa-solid fa-ellipsis"></i>
-                </button>
+                <div class="message sent">
+                    Absolutely! 🚀
+                </div>
 
-            </div>
-
-        </header>
-
-
-        <!-- MESSAGES -->
-        <section class="messages">
-
-            <div class="message received">
-
-                Hey! 👋 Welcome to Voxa.
-
-                <span class="message-time">
-                    12:30 PM
-                </span>
+                <div class="typing">
+                    Someone is typing...
+                </div>
 
             </div>
-
-
-            <div class="message sent">
-
-                Thanks! Voxa looks amazing.
-
-                <span class="message-time">
-                    12:31 PM
-                </span>
-
-            </div>
-
-
-            <div class="message received">
-
-                This is your new place to connect, chat and share.
-
-                <span class="message-time">
-                    12:32 PM
-                </span>
-
-            </div>
-
-
-            <div class="message sent">
-
-                I can't wait to try it! 🚀
-
-                <span class="message-time">
-                    12:33 PM
-                </span>
-
-            </div>
-
-        </section>
-
-
-        <!-- MESSAGE INPUT -->
-        <div class="message-input">
-
-            <button class="icon-btn">
-                <i class="fa-solid fa-paperclip"></i>
-            </button>
-
-            <input
-                type="text"
-                placeholder="Type a message..."
-            >
-
-            <button class="send-btn">
-                <i class="fa-solid fa-paper-plane"></i>
-            </button>
 
         </div>
 
-    </main>
+    </div>
 
-</div>
+</section>
+
+
+<!-- =========================
+     FEATURES
+========================= -->
+
+<section class="section" id="features">
+
+    <div class="section-title">
+
+        <h2>Everything you need to connect</h2>
+
+        <p>
+            VOXA brings communication tools together
+            in one simple and modern platform.
+        </p>
+
+    </div>
+
+
+    <div class="features">
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="fa-solid fa-comments"></i>
+            </div>
+
+            <h3>Real-Time Chat</h3>
+
+            <p>
+                Chat with your friends and contacts
+                through a clean and simple interface.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="fa-solid fa-user-group"></i>
+            </div>
+
+            <h3>Contacts</h3>
+
+            <p>
+                Keep your contacts organized and
+                easily find the people you want to talk to.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+            <h3>Security</h3>
+
+            <p>
+                Build your account system with modern
+                authentication and security technologies.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="fa-solid fa-image"></i>
+            </div>
+
+            <h3>Share Media</h3>
+
+            <p>
+                Share photos, files and other content
+                with your conversations.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+
+            <h3>Fast Experience</h3>
+
+            <p>
+                A lightweight interface designed to
+                feel quick and responsive.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                <i class="fa-solid fa-mobile-screen"></i>
+            </div>
+
+            <h3>Mobile Friendly</h3>
+
+            <p>
+                Use VOXA comfortably on phones,
+                tablets and desktop computers.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CALL TO ACTION
+========================= -->
+
+<section class="cta">
+
+    <h2>Ready to join VOXA?</h2>
+
+    <p>
+        Create your account and start connecting.
+    </p>
+
+    <a href="login.html" class="btn">
+        <i class="fa-solid fa-user-plus"></i>
+        Get Started
+    </a>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <div>
+
+            <div class="footer-logo">
+                <i class="fa-solid fa-comments"></i>
+                VOXA
+            </div>
+
+            <p class="footer-description">
+                Connect. Chat. Share.
+                A modern communication experience
+                built for the future.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>Platform</h4>
+
+            <a href="index.html">Home</a>
+
+            <a href="#features">Features</a>
+
+            <a href="contacts.html">Contacts</a>
+
+            <a href="login.html">Login</a>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>Account</h4>
+
+            <a href="login.html">Login</a>
+
+            <a href="login.html">Register</a>
+
+            <a href="forgot-password.html">
+                Forgot Password
+            </a>
+
+        </div>
+
+
+        <div>
+
+            <h4>Follow VOXA</h4>
+
+            <div class="socials">
+
+                <a href="#" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <a href="#" aria-label="X">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+
+                <a href="#" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+        © 2026 VOXA. All Rights Reserved.
+    </div>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+
+    navLinks.classList.toggle("active");
+
+    const icon = menuBtn.querySelector("i");
+
+    if(navLinks.classList.contains("active")){
+
+        icon.classList.remove("fa-bars");
+        icon.classList.add("fa-xmark");
+
+    }else{
+
+        icon.classList.remove("fa-xmark");
+        icon.classList.add("fa-bars");
+
+    }
+
+});
+
+
+/* Close mobile menu after clicking a link */
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navLinks.classList.remove("active");
+
+        const icon = menuBtn.querySelector("i");
+
+        icon.classList.remove("fa-xmark");
+        icon.classList.add("fa-bars");
+
+    });
+
+});
+
+</script>
 
 </body>
 </html>
-
+```
